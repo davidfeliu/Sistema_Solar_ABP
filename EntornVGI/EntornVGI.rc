@@ -1,0 +1,819 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#ifndef APSTUDIO_INVOKED
+#include "targetver.h"
+#endif
+#include "afxres.h"
+#include "verrsrc.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Español (España, alfabetización internacional) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ESN)
+LANGUAGE LANG_SPANISH, SUBLANG_SPANISH_MODERN
+#pragma code_page(1252)
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#ifndef APSTUDIO_INVOKED\r\n"
+    "#include ""targetver.h""\r\n"
+    "#endif\r\n"
+    "#include ""afxres.h""\r\n"
+    "#include ""verrsrc.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ESN)\r\n"
+    "LANGUAGE 10, 3\r\n"
+    "#include ""res\\EntornVGI.rc2""  // recursos editados que no son de Microsoft Visual C++\r\n"
+    "#include ""l.ESN\\afxres.rc""      // Componentes estándar\r\n"
+    "#include ""l.ESN\\afxprint.rc""    // Recursos de impresión y vista previa de impresión\r\n"
+    "#if !defined(_AFXDLL)\r\n"
+    "#include ""l.ESN\\afxribbon.rc""        // Recursos de barra de control y cinta MFC\r\n"
+    "#endif\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON                    "res\\EntornVGI.ico"
+
+IDR_EntornVGITYPE       ICON                    "res\\EntornVGIDoc.ico"
+
+IDI_FILE_VIEW           ICON                    "res\\file_view.ico"
+
+IDI_FILE_VIEW_HC        ICON                    "res\\file_view_hc.ico"
+
+IDI_CLASS_VIEW          ICON                    "res\\class_view.ico"
+
+IDI_CLASS_VIEW_HC       ICON                    "res\\class_view_hc.ico"
+
+IDI_OUTPUT_WND          ICON                    "res\\output_wnd.ico"
+
+IDI_OUTPUT_WND_HC       ICON                    "res\\output_wnd_hc.ico"
+
+IDI_PROPERTIES_WND      ICON                    "res\\properties_wnd.ico"
+
+IDI_PROPERTIES_WND_HC   ICON                    "res\\properties_wnd_hc.ico"
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDR_MAINFRAME           BITMAP                  "res\\Toolbar.bmp"
+
+IDR_MAINFRAME_256       BITMAP                  "res\\Toolbar256.bmp"
+
+IDR_SORT                BITMAP                  "res\\sort.bmp"
+
+IDB_SORT_24             BITMAP                  "res\\sort_hc.bmp"
+
+IDB_FILE_VIEW           BITMAP                  "res\\fileview.bmp"
+
+IDB_FILE_VIEW_24        BITMAP                  "res\\fileview_hc.bmp"
+
+IDB_CLASS_VIEW          BITMAP                  "res\\classview.bmp"
+
+IDB_CLASS_VIEW_24       BITMAP                  "res\\classview_hc.bmp"
+
+IDR_EXPLORER            BITMAP                  "res\\explorer.bmp"
+
+IDB_EXPLORER_24         BITMAP                  "res\\explorer_hc.bmp"
+
+IDR_MENU_IMAGES         BITMAP                  "res\\menuimages.bmp"
+
+IDB_MENU_IMAGES_24      BITMAP                  "res\\menuimages_hc.bmp"
+
+IDR_PROPERTIES          BITMAP                  "res\\properties.bmp"
+
+IDB_PROPERTIES_HC       BITMAP                  "res\\properties_hc.bmp"
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Toolbar
+//
+
+IDR_MAINFRAME TOOLBAR 16, 15
+BEGIN
+    BUTTON      ID_FILE_NEW
+    BUTTON      ID_FILE_OPEN
+    BUTTON      ID_FILE_SAVE
+    SEPARATOR
+    BUTTON      ID_EDIT_CUT
+    BUTTON      ID_EDIT_COPY
+    BUTTON      ID_EDIT_PASTE
+    SEPARATOR
+    BUTTON      ID_FILE_PRINT
+    BUTTON      ID_APP_ABOUT
+END
+
+IDR_MAINFRAME_256 TOOLBAR 16, 15
+BEGIN
+    BUTTON      ID_FILE_NEW
+    BUTTON      ID_FILE_OPEN
+    BUTTON      ID_FILE_SAVE
+    SEPARATOR
+    BUTTON      ID_EDIT_CUT
+    BUTTON      ID_EDIT_COPY
+    BUTTON      ID_EDIT_PASTE
+    SEPARATOR
+    BUTTON      ID_FILE_PRINT
+    BUTTON      ID_APP_ABOUT
+END
+
+IDR_SORT TOOLBAR 16, 15
+BEGIN
+    BUTTON      ID_SORT_MENU
+    BUTTON      ID_NEW_FOLDER
+END
+
+IDR_EXPLORER TOOLBAR 16, 15
+BEGIN
+    BUTTON      ID_PROPERTIES
+END
+
+IDR_MENU_IMAGES TOOLBAR 16, 15
+BEGIN
+    BUTTON      ID_WINDOW_MANAGER
+    SEPARATOR
+    BUTTON      ID_WINDOW_CASCADE
+    BUTTON      ID_WINDOW_TILE_HORZ
+    BUTTON      ID_TOOLS_MACRO
+    BUTTON      ID_SORTING_SORTALPHABETIC
+    BUTTON      ID_SORTING_SORTBYTYPE
+    BUTTON      ID_SORTING_SORTBYACCESS
+    BUTTON      ID_SORTING_GROUPBYTYPE
+END
+
+IDR_PROPERTIES TOOLBAR 16, 15
+BEGIN
+    BUTTON      ID_EXPAND_ALL
+    BUTTON      ID_SORTPROPERTIES
+    BUTTON      ID_PROPERTIES1
+    BUTTON      ID_PROPERTIES2
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MAINFRAME MENU
+BEGIN
+    POPUP "&Archivo"
+    BEGIN
+        MENUITEM "&Nuevo\tCtrl+N",              ID_FILE_NEW
+        MENUITEM "&Abrir...\tCtrl+O",           ID_FILE_OPEN
+        MENUITEM "Obrir Fixer OBJ",             ID_ARXIU_OBRIR_FITXER_OBJ
+        MENUITEM "Obrir Fitxer 3DS",            ID_ARXIU_OBRIR_FITXER_3DS
+        MENUITEM "&Cerrar",                     ID_FILE_CLOSE
+        MENUITEM SEPARATOR
+        MENUITEM "&Configurar impresión...",    ID_FILE_PRINT_SETUP
+        MENUITEM SEPARATOR
+        MENUITEM "Archivo reciente",            ID_FILE_MRU_FILE1
+        MENUITEM SEPARATOR
+        MENUITEM "&Salir",                      ID_APP_EXIT
+    END
+    POPUP "&Ver"
+    BEGIN
+        POPUP "&Barras de herramientas y ventanas de acoplamiento"
+        BEGIN
+            MENUITEM "<placeholder>",               ID_VIEW_TOOLBAR
+        END
+        MENUITEM "&Barra de estado",            ID_VIEW_STATUS_BAR
+        POPUP "&Aspecto de la aplicación"
+        BEGIN
+            MENUITEM "Windows &2000",               ID_VIEW_APPLOOK_WIN_2000
+            MENUITEM "Office &XP",                  ID_VIEW_APPLOOK_OFF_XP
+            MENUITEM "&Windows XP",                 ID_VIEW_APPLOOK_WIN_XP
+            MENUITEM "Office 200&3",                ID_VIEW_APPLOOK_OFF_2003
+            MENUITEM "Visual Studio 200&5",         ID_VIEW_APPLOOK_VS_2005
+            MENUITEM "Visual Studio 200&8",         ID_VIEW_APPLOOK_VS_2008
+            POPUP "Office 200&7"
+            BEGIN
+                MENUITEM "Estilo a&zul",                ID_VIEW_APPLOOK_OFF_2007_BLUE
+                MENUITEM "Estilo &negro",               ID_VIEW_APPLOOK_OFF_2007_BLACK
+                MENUITEM "Estilo pla&teado",            ID_VIEW_APPLOOK_OFF_2007_SILVER
+                MENUITEM "Estilo &aguamarina",          ID_VIEW_APPLOOK_OFF_2007_AQUA
+            END
+        END
+    END
+    POPUP "Ay&uda"
+    BEGIN
+        MENUITEM "&Acerca de EntornVGI...",     ID_APP_ABOUT
+    END
+END
+
+IDR_EntornVGITYPE MENU
+BEGIN
+    POPUP "&Archivo"
+    BEGIN
+        MENUITEM "&Nuevo\tCtrl+N",              ID_FILE_NEW
+        MENUITEM "&Abrir...\tCtrl+O",           ID_FILE_OPEN
+        MENUITEM "Obrir Fractal              Ctrl+F", ID_ARXIU_OBRIR_FRACTAL
+        MENUITEM "Obrir Fixer OBJ",             ID_ARXIU_OBRIR_FITXER_OBJ
+        MENUITEM "Obrir Fitxer 3DS",            ID_ARXIU_OBRIR_FITXER_3DS
+        MENUITEM "Obrir Fitxer Font de Llum",   ID_ARXIU_OBRIR_FITXER_FONT_LLUM
+        MENUITEM "&Cerrar",                     ID_FILE_CLOSE
+        MENUITEM "&Guardar\tCtrl+S",            ID_FILE_SAVE
+        MENUITEM "Guardar &como...",            ID_FILE_SAVE_AS
+        MENUITEM SEPARATOR
+        MENUITEM "&Imprimir...\tCtrl+P",        ID_FILE_PRINT
+        MENUITEM "&Vista previa de impresión",  ID_FILE_PRINT_PREVIEW
+        MENUITEM "&Configurar impresión...",    ID_FILE_PRINT_SETUP
+        MENUITEM SEPARATOR
+        MENUITEM "Archivo reciente",            ID_FILE_MRU_FILE1
+        MENUITEM SEPARATOR
+        MENUITEM "&Salir",                      ID_APP_EXIT
+    END
+    POPUP "&Edición"
+    BEGIN
+        MENUITEM "&Deshacer\tCtrl+Z",           ID_EDIT_UNDO
+        MENUITEM SEPARATOR
+        MENUITEM "Cor&tar\tCtrl+X",             ID_EDIT_CUT
+        MENUITEM "&Copiar\tCtrl+C",             ID_EDIT_COPY
+        MENUITEM "&Pegar\tCtrl+V",              ID_EDIT_PASTE
+    END
+    POPUP "&Ver"
+    BEGIN
+        POPUP "&Barras de herramientas y ventanas de acoplamiento"
+        BEGIN
+            MENUITEM "<placeholder>",               ID_VIEW_TOOLBAR
+        END
+        MENUITEM "&Barra de estado",            ID_VIEW_STATUS_BAR
+        POPUP "&Aspecto de la aplicación"
+        BEGIN
+            MENUITEM "Windows &2000",               ID_VIEW_APPLOOK_WIN_2000
+            MENUITEM "Office &XP",                  ID_VIEW_APPLOOK_OFF_XP
+            MENUITEM "&Windows XP",                 ID_VIEW_APPLOOK_WIN_XP
+            MENUITEM "Office 200&3",                ID_VIEW_APPLOOK_OFF_2003
+            MENUITEM "Visual Studio 200&5",         ID_VIEW_APPLOOK_VS_2005
+            MENUITEM "Visual Studio 200&8",         ID_VIEW_APPLOOK_VS_2008
+            POPUP "Office 200&7"
+            BEGIN
+                MENUITEM "Estilo a&zul",                ID_VIEW_APPLOOK_OFF_2007_BLUE
+                MENUITEM "Estilo &negro",               ID_VIEW_APPLOOK_OFF_2007_BLACK
+                MENUITEM "Estilo pla&teado",            ID_VIEW_APPLOOK_OFF_2007_SILVER
+                MENUITEM "Estilo &aguamarina",          ID_VIEW_APPLOOK_OFF_2007_AQUA
+            END
+        END
+    END
+    POPUP "&Ventana"
+    BEGIN
+        MENUITEM "&Nueva ventana",              ID_WINDOW_NEW
+    END
+    MENUITEM SEPARATOR
+    POPUP "Càmera"
+    BEGIN
+        MENUITEM "ESFÈRICA?",                   ID_CAMERA_ESFERICA, CHECKED
+        MENUITEM "Mòbil?",                      32775, CHECKED
+        MENUITEM "Zoom?",                       ID_VISTA_ZOOM, CHECKED
+        MENUITEM "Zoom Orto?",                  ID_VISTA_ZOOM_ORTO, CHECKED
+        MENUITEM "Satèl.lit?",                  32829, CHECKED
+        MENUITEM "Polars Eix X",                ID_VISTA_POLARS_X, CHECKED
+        MENUITEM "Polars Eix Y",                32779, CHECKED
+        MENUITEM "Polars Eix Z",                32780, CHECKED
+        MENUITEM SEPARATOR
+        MENUITEM "NAVEGA?",                     ID_VISTA_NAVEGA, CHECKED
+        MENUITEM "Origen Navega",               ID_VISTA_ORIGENNAVEGA
+        MENUITEM SEPARATOR
+        MENUITEM "GEODE?",                      32876, CHECKED
+        MENUITEM "Origen Geode",                32877
+    END
+    POPUP "Vista"
+    BEGIN
+        MENUITEM "Full Screen?",                ID_VISTA_FULLSCREEN, CHECKED
+        MENUITEM SEPARATOR
+        MENUITEM "Pan?",                        ID_VISTA_PAN, CHECKED
+        MENUITEM "Origen Pan",                  ID_VISTA_ORIGENPAN
+        MENUITEM SEPARATOR
+        MENUITEM "Eixos?",                      ID_VISTA_EIXOS, CHECKED
+        MENUITEM "SkyBox?",                     ID_VISTA_SKYBOX, CHECKED
+        MENUITEM SEPARATOR
+        MENUITEM "Grid XY?",                    32856, CHECKED
+        MENUITEM "Grid XZ?",                    32857, CHECKED
+        MENUITEM "Grid YZ?",                    32858, CHECKED
+        MENUITEM "Grid XYZ?",                   32859, CHECKED
+    END
+    POPUP "Projecció"
+    BEGIN
+        MENUITEM "Perspectiva",                 32786, CHECKED
+    END
+    POPUP "Objecte"
+    BEGIN
+        MENUITEM "Cap",                         ID_OBJECTE_CAP, CHECKED
+        MENUITEM "Cub",                         32787, CHECKED
+        MENUITEM "Cub RGB",                     ID_OBJECTE_CUB_RGB, CHECKED
+        MENUITEM "Esfera",                      32788, CHECKED
+        MENUITEM "Tetera",                      32789, CHECKED
+        MENUITEM SEPARATOR
+        MENUITEM "Arc",                         32871, CHECKED
+        POPUP "Corbes"
+        BEGIN
+            MENUITEM "Bezier",                      ID_OBJETE_CORBA_BEZIER, CHECKED
+            MENUITEM "Lemniscata",                  ID_OBJECTE_CORBA_LEMNISCATA, CHECKED
+            MENUITEM "B-Spline",                    ID_OBJECTE_CORBA_BSPLINE, CHECKED
+            MENUITEM SEPARATOR
+            MENUITEM "Punts de Control?",           32855, CHECKED
+            MENUITEM "Triedre de Frenet?",          32878, CHECKED
+        END
+        MENUITEM "Tie",                         ID_OBJECTE_TIE, CHECKED
+        MENUITEM "Matriu Primitives",           ID_OBJECTE_MATRIU_PRIMITIVES, CHECKED
+        MENUITEM "Matriu Primitives VAO",       ID_OBJECTE_MATRIU_PRIMITIVES_VBO, CHECKED
+        MENUITEM "E1",                          ID_OBJECTE_E1, CHECKED
+    END
+    POPUP "Transforma"
+    BEGIN
+        MENUITEM "Traslació?",                  32791, CHECKED
+        MENUITEM "Origen Traslació",            ID_TRANSFORMA_ORIGENTRASLACIO
+        MENUITEM SEPARATOR
+        MENUITEM "Rotació?",                    32793, CHECKED
+        MENUITEM "Origen Rotació",              ID_TRANSFORMA_ORIGENROTACIO
+        MENUITEM SEPARATOR
+        MENUITEM "Escalat?",                    ID_TRANSFORMA_ESCALAT, CHECKED
+        MENUITEM "Origen Escalat",              ID_TRANSFORMA_ORIGENESCALAT
+        MENUITEM SEPARATOR
+        MENUITEM "Mobil Eix X?",                32799, CHECKED
+        MENUITEM "Mobil Eix Y?",                32800, CHECKED
+        MENUITEM "Mobil Eix Z?",                32801, CHECKED
+    END
+    POPUP "Ocultacions"
+    BEGIN
+        MENUITEM "Front Faces?",                32839, CHECKED
+        MENUITEM SEPARATOR
+        MENUITEM "Test Visibilitat?",           32802, CHECKED
+        MENUITEM "Z-Buffer?",                   32803, CHECKED
+        MENUITEM SEPARATOR
+        MENUITEM "Back Line?",                  32804, CHECKED
+    END
+    POPUP "Iluminació"
+    BEGIN
+        MENUITEM "Llum Fixe?",                  ID_ILUMINACIO_LLUMFIXE, CHECKED
+        MENUITEM SEPARATOR
+        MENUITEM "Cares Front i Back?",         ID_ILUMINACIO2SIDES, CHECKED
+        MENUITEM SEPARATOR
+        MENUITEM "Punts",                       ID_ILUMINACIO_PUNTS, CHECKED
+        MENUITEM "Filferros",                   32808, CHECKED
+        MENUITEM "Plana",                       32809, CHECKED
+        MENUITEM "Gouraud",                     32810, CHECKED
+        MENUITEM "Phong",                       ID_ILUMINACIO_PHONG, CHECKED
+        MENUITEM SEPARATOR
+        POPUP "Refl. Material"
+        BEGIN
+            MENUITEM "Material (T) / Color (F)",    ID_MATERIAL_REFLMATERIAL, CHECKED
+            MENUITEM SEPARATOR
+            MENUITEM "Emissio?",                    32814, CHECKED
+            MENUITEM "Ambient?",                    32815, CHECKED
+            MENUITEM "Difusa",                      32816, CHECKED
+            MENUITEM "Especular",                   32817, CHECKED
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "Textures?",                   32818, CHECKED
+        POPUP "Textura"
+        BEGIN
+            MENUITEM "FItxer Imatge SOIL",          ID_ILUMINACIO_TEXTURA_FITXERIMATGE, CHECKED
+        END
+        MENUITEM "Flag_Invert_Y?",              ID_ILUMINACIO_TEXTURA_FLAGINVERTY, CHECKED
+    END
+    POPUP "Llums"
+    BEGIN
+        MENUITEM "Llum Ambient?",               32823, CHECKED
+        MENUITEM "Llum #0? (+Z)",               ID_LLUMS_LLUM0, CHECKED
+        MENUITEM "Llum #1 (+X)",                ID_LLUMS_LLUM1, CHECKED
+        MENUITEM "Llum #2 (+Y)",                ID_LLUMS_LLUM2, CHECKED
+        MENUITEM "Llum #3 (Z=Y=X)",             ID_LLUMS_LLUM3, CHECKED
+        MENUITEM "Llum #4 (-Z)",                ID_LLUMS_LLUM4, CHECKED
+    END
+    POPUP "Shaders"
+    BEGIN
+        MENUITEM "Carregar Fitxers Shader",     ID_SHADER_LOAD_FILES, CHECKED
+        MENUITEM SEPARATOR
+    END
+    POPUP "Ay&uda"
+    BEGIN
+        MENUITEM "&Acerca de EntornVGI (Tecla ALT)...", ID_APP_ABOUT
+    END
+END
+
+IDR_POPUP_EDIT MENU
+BEGIN
+    POPUP "Editar"
+    BEGIN
+        MENUITEM "&Cortar\tCtrl+X",             ID_EDIT_CUT
+        MENUITEM "&Copiar\tCtrl+C",             ID_EDIT_COPY
+        MENUITEM "&Pegar\tCtrl+V",              ID_EDIT_PASTE
+    END
+END
+
+IDR_POPUP_SORT MENU
+BEGIN
+    POPUP "Ordenar"
+    BEGIN
+        MENUITEM "&Ordenar alfabéticamente",    ID_SORTING_SORTALPHABETIC
+        MENUITEM "Ordenar por &tipo",           ID_SORTING_SORTBYTYPE
+        MENUITEM "Ordenar por &acceso",         ID_SORTING_SORTBYACCESS
+        MENUITEM "Agrupar por t&ipo",           ID_SORTING_GROUPBYTYPE
+    END
+END
+
+IDR_POPUP_EXPLORER MENU
+BEGIN
+    POPUP "Explorador"
+    BEGIN
+        MENUITEM "&Abrir",                      ID_OPEN
+        MENUITEM "Abrir &con....",              ID_OPEN_WITH
+        MENUITEM SEPARATOR
+        MENUITEM "&Compilar",                   ID_DUMMY_COMPILE
+        MENUITEM SEPARATOR
+        MENUITEM "&Cortar\tCtrl+X",             ID_EDIT_CUT
+        MENUITEM "&Copiar\tCtrl+C",             ID_EDIT_COPY
+        MENUITEM "&Quitar",                     ID_EDIT_CLEAR
+        MENUITEM SEPARATOR
+        MENUITEM "&Propiedades...",             ID_PROPERTIES
+    END
+END
+
+IDR_OUTPUT_POPUP MENU
+BEGIN
+    POPUP "Popup"
+    BEGIN
+        MENUITEM "&Copiar",                     ID_EDIT_COPY
+        MENUITEM "&Borrar",                     ID_EDIT_CLEAR
+        MENUITEM SEPARATOR
+        MENUITEM "&Ocultar",                    ID_VIEW_OUTPUTWND
+    END
+END
+
+IDR_HELP_MENU MENU
+BEGIN
+    MENUITEM "&Acerca de EntornVGI...",     ID_APP_ABOUT
+END
+
+IDR_THEME_MENU MENU
+BEGIN
+    MENUITEM "Office 2007 (estilo a&zul)",  ID_VIEW_APPLOOK_OFF_2007_BLUE
+    MENUITEM "Office 2007 (estilo &negro)", ID_VIEW_APPLOOK_OFF_2007_BLACK
+    MENUITEM "Office 2007 (estilo pla&teado)", ID_VIEW_APPLOOK_OFF_2007_SILVER
+    MENUITEM "Office 2007 (estilo &aguamarina)", ID_VIEW_APPLOOK_OFF_2007_AQUA
+    MENUITEM "Win&dows 7",                  ID_VIEW_APPLOOK_WINDOWS_7
+END
+
+IDR_MENU_WINDOW MENU
+BEGIN
+    POPUP "Window"
+    BEGIN
+        MENUITEM "Full Screen Mode?",           ID_VISTA_FULLSCREEN, CHECKED
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDR_MAINFRAME ACCELERATORS
+BEGIN
+    "N",            ID_FILE_NEW,            VIRTKEY, CONTROL
+    "O",            ID_FILE_OPEN,           VIRTKEY, CONTROL
+    "S",            ID_FILE_SAVE,           VIRTKEY, CONTROL
+    "P",            ID_FILE_PRINT,          VIRTKEY, CONTROL
+    "Z",            ID_EDIT_UNDO,           VIRTKEY, CONTROL
+    "X",            ID_EDIT_CUT,            VIRTKEY, CONTROL
+    "C",            ID_EDIT_COPY,           VIRTKEY, CONTROL
+    "V",            ID_EDIT_PASTE,          VIRTKEY, CONTROL
+    VK_BACK,        ID_EDIT_UNDO,           VIRTKEY, ALT
+    VK_DELETE,      ID_EDIT_CUT,            VIRTKEY, SHIFT
+    VK_INSERT,      ID_EDIT_COPY,           VIRTKEY, CONTROL
+    VK_INSERT,      ID_EDIT_PASTE,          VIRTKEY, SHIFT
+    VK_F6,          ID_NEXT_PANE,           VIRTKEY 
+    VK_F6,          ID_PREV_PANE,           VIRTKEY, SHIFT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOGEX 0, 0, 303, 74
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Acerca de EntornVGI"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    ICON            IDR_MAINFRAME,IDC_STATIC,17,27,20,20
+    LTEXT           "Copyright (C) 2022",IDC_STATIC,50,53,76,8
+    DEFPUSHBUTTON   "Aceptar",IDOK,246,53,50,14,WS_GROUP
+    LTEXT           "VISUALITZACIÓ GRÀFICA INTERACTIVA  (Escola d'Enginyeria - UAB)",IDC_STATIC,50,14,227,8
+    LTEXT           "Entorn Gràfic VS2022 amb MFC i OpenGL 3.3+ per a pràctiques",IDC_STATIC,50,27,221,8
+    LTEXT           "AUTOR: Enric Martí Gòdia",IDC_STATIC,50,40,107,8
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x40004L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "0c0a04b0"
+        BEGIN
+            VALUE "CompanyName", "TODO: <Nombre de la compañía>"
+            VALUE "FileDescription", "EntornVGI"
+            VALUE "FileVersion", "1.0.0.1"
+            VALUE "InternalName", "EntornVGI.exe"
+            VALUE "LegalCopyright", "TODO: (c) <Nombre de la compañía>.  Reservados todos los derechos."
+            VALUE "OriginalFilename", "EntornVGI.exe"
+            VALUE "ProductName", "TODO: <Nombre del producto>"
+            VALUE "ProductVersion", "1.0.0.1"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0xc0a, 1200
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 296
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 67
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// AFX_DIALOG_LAYOUT
+//
+
+IDD_ABOUTBOX AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE
+BEGIN
+    IDP_OLE_INIT_FAILED     "Error de inicialización OLE.  Asegúrese de que la versión de las bibliotecas OLE es la correcta."
+    ID_INDICATOR_R          "Radi =%d"
+    ID_INDICATOR_ALFA       "Alfa=%d"
+    ID_INDICATOR_BETA       "Beta=%d"
+    ID_INDICATOR_PVX        "PVx=         %d"
+    ID_INDICATOR_PVY        "PVy=         %d"
+    ID_INDICATOR_PVZ        "PVz=         %d"
+    ID_INDICATOR_COLOR      "######"
+    ID_INDICATOR_TR         "    %d"
+    ID_INDICATOR_PTR        "                           %d  "
+    ID_INDICATOR_PAS        "#######"
+END
+
+STRINGTABLE
+BEGIN
+    IDR_MAINFRAME           "Entorn Gràfic VS2022 amb OpenGL 3.3+ (Visualització Gràfica Interactiva - Grau en Enginyeria Informàtica - Escola Enginyeria - UAB)"
+    IDR_EntornVGITYPE       "\nEntornVGI\nEntornVGI\n\n\nEntornVGI.Document\nEntornVGI.Document"
+    ID_WINDOW_MANAGER       "&Ventanas..."
+END
+
+STRINGTABLE
+BEGIN
+    AFX_IDS_APP_TITLE       "EntornVGI"
+    AFX_IDS_IDLEMESSAGE     "Aplicació Gràfica VS2022 amb OpenGL amb primitives GLUT"
+END
+
+STRINGTABLE
+BEGIN
+    ID_INDICATOR_EXT        "EXT"
+    ID_INDICATOR_CAPS       "CAP"
+    ID_INDICATOR_NUM        "NUM"
+    ID_INDICATOR_SCRL       "SCRL"
+    ID_INDICATOR_OVR        "OVR"
+    ID_INDICATOR_REC        "REC"
+END
+
+STRINGTABLE
+BEGIN
+    ID_FILE_NEW             "Crear un documento nuevo\nNuevo"
+    ID_FILE_OPEN            "Abrir un documento existente\nAbrir"
+    ID_FILE_CLOSE           "Cerrar el documento activo\nCerrar"
+    ID_FILE_SAVE            "Guardar el documento activo\nGuardar"
+    ID_FILE_SAVE_AS         "Guardar el documento activo con un nombre nuevo\nGuardar como"
+    ID_FILE_PAGE_SETUP      "Cambiar las opciones de impresión\nConfigurar página"
+    ID_FILE_PRINT_SETUP     "Cambiar las opciones de impresora y de impresión\nConfigurar impresión"
+    ID_FILE_PRINT           "Imprimir el documento activo\nImprimir"
+    ID_FILE_PRINT_DIRECT    "Imprimir el documento actual con las opciones actuales\nImpresión rápida"
+    ID_FILE_PRINT_PREVIEW   "Mostrar páginas completas\nVista previa de impresión"
+END
+
+STRINGTABLE
+BEGIN
+    ID_APP_ABOUT            "Mostrar información del programa, número de versión y copyright\nAcerca de"
+    ID_APP_EXIT             "Salir de la aplicación; permite guardar documentos\nSalir"
+END
+
+STRINGTABLE
+BEGIN
+    ID_FILE_MRU_FILE1       "Abrir este documento"
+    ID_FILE_MRU_FILE2       "Abrir este documento"
+    ID_FILE_MRU_FILE3       "Abrir este documento"
+    ID_FILE_MRU_FILE4       "Abrir este documento"
+    ID_FILE_MRU_FILE5       "Abrir este documento"
+    ID_FILE_MRU_FILE6       "Abrir este documento"
+    ID_FILE_MRU_FILE7       "Abrir este documento"
+    ID_FILE_MRU_FILE8       "Abrir este documento"
+    ID_FILE_MRU_FILE9       "Abrir este documento"
+    ID_FILE_MRU_FILE10      "Abrir este documento"
+    ID_FILE_MRU_FILE11      "Abrir este documento"
+    ID_FILE_MRU_FILE12      "Abrir este documento"
+    ID_FILE_MRU_FILE13      "Abrir este documento"
+    ID_FILE_MRU_FILE14      "Abrir este documento"
+    ID_FILE_MRU_FILE15      "Abrir este documento"
+    ID_FILE_MRU_FILE16      "Abrir este documento"
+END
+
+STRINGTABLE
+BEGIN
+    ID_NEXT_PANE            "Cambiar al siguiente panel de la ventana\nPanel siguiente"
+    ID_PREV_PANE            "Cambiar al panel anterior de la ventana\nPanel anterior"
+END
+
+STRINGTABLE
+BEGIN
+    ID_WINDOW_NEW           "Abrir otra ventana del documento activo\nNueva ventana"
+    ID_WINDOW_ARRANGE       "Organizar los iconos en la parte inferior de la ventana\nOrganizar iconos"
+    ID_WINDOW_CASCADE       "Organizar las ventanas para que se superpongan\nCascada"
+    ID_WINDOW_TILE_HORZ     "Organizar las ventanas en mosaico\nMosaico"
+    ID_WINDOW_TILE_VERT     "Organizar las ventanas en mosaico\nMosaico"
+    ID_WINDOW_SPLIT         "Dividir la ventana activa en paneles\nDividir"
+END
+
+STRINGTABLE
+BEGIN
+    ID_EDIT_CLEAR           "Borrar la selección\nBorrar"
+    ID_EDIT_CLEAR_ALL       "Borrar todo\nBorrar todo"
+    ID_EDIT_COPY            "Copiar la selección y la coloca en el Portapapeles\nCopiar"
+    ID_EDIT_CUT             "Cortar la selección y la coloca en el Portapapeles\nCortar"
+    ID_EDIT_FIND            "Buscar el texto especificado\nBuscar"
+    ID_EDIT_PASTE           "Insertar el contenido del Portapapeles\nPegar"
+    ID_EDIT_REPEAT          "Repetir la última acción\nRepetir"
+    ID_EDIT_REPLACE         "Reemplazar el texto específico con texto diferente\nReemplazar"
+    ID_EDIT_SELECT_ALL      "Seleccionar todo el documento\nSeleccionar todo"
+    ID_EDIT_UNDO            "Deshacer la última acción\nDeshacer"
+    ID_EDIT_REDO            "Rehacer la acción previamente deshecha\nRehacer"
+END
+
+STRINGTABLE
+BEGIN
+    ID_VIEW_STATUS_BAR      "Mostrar u ocultar la barra de estado\nAlternar barra de estado"
+END
+
+STRINGTABLE
+BEGIN
+    AFX_IDS_SCSIZE          "Cambiar el tamaño de la ventana"
+    AFX_IDS_SCMOVE          "Cambiar la posición de la ventana"
+    AFX_IDS_SCMINIMIZE      "Reducir la ventana a un icono"
+    AFX_IDS_SCMAXIMIZE      "Aumentar la ventana al tamaño máximo"
+    AFX_IDS_SCNEXTWINDOW    "Cambiar a la ventana de documento siguiente"
+    AFX_IDS_SCPREVWINDOW    "Cambiar a la ventana de documento anterior"
+    AFX_IDS_SCCLOSE         "Cerrar la ventana activa y preguntar si desea guardar los documentos"
+END
+
+STRINGTABLE
+BEGIN
+    AFX_IDS_SCRESTORE       "Restaurar la ventana a su tamaño normal"
+    AFX_IDS_SCTASKLIST      "Activar la Lista de tareas"
+    AFX_IDS_MDICHILD        "Activar esta ventana"
+END
+
+STRINGTABLE
+BEGIN
+    AFX_IDS_PREVIEW_CLOSE   "Cerrar el modo de vista previa de impresión\nCancelar Vista previa"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_STATUS_PANE1        "Panel 1"
+    IDS_STATUS_PANE2        "Panel 2"
+    IDS_TOOLBAR_STANDARD    "Estándar"
+    IDS_TOOLBAR_CUSTOMIZE   "Personalizar..."
+END
+
+STRINGTABLE
+BEGIN
+    IDS_FILE_VIEW           "Vista de archivos"
+    IDS_CLASS_VIEW          "Vista de clases"
+    IDS_OUTPUT_WND          "Resultados"
+    IDS_PROPERTIES_WND      "Propiedades"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_EXPLORER            "Explorador"
+    IDS_EDIT_MENU           "Editar"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_BUILD_TAB           "Compilar"
+    IDS_DEBUG_TAB           "Depurar"
+    IDS_FIND_TAB            "Buscar"
+END
+
+#endif    // Español (España, alfabetización internacional) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ESN)
+LANGUAGE 10, 3
+#include "res\EntornVGI.rc2"  // recursos editados que no son de Microsoft Visual C++
+#include "l.ESN\afxres.rc"      // Componentes estándar
+#include "l.ESN\afxprint.rc"    // Recursos de impresión y vista previa de impresión
+#if !defined(_AFXDLL)
+#include "l.ESN\afxribbon.rc"        // Recursos de barra de control y cinta MFC
+#endif
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+
