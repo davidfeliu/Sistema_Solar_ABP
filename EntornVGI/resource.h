@@ -208,13 +208,19 @@
 #define ID_ARXIU_OBRIR_FITXER_FONT_LLUM 32887
 #define ID_OBJECTE_CAP                  32888
 #define ID_OBJECTE_E1                   32889
+#define ID_SISTEMASOLAR_SISTEMASOLAR    32890
+#define ID_OBJECTE_SISTEMASOLAR         32891
+#define ID_OBJECTE_SISTE                32892
+#define ID_OBJECTE_SISTEma              32893
+#define ID_SISTEMASOLAR_TOT             32894
+#define ID_SISTEMASOLAR_ROTATERRA       32895
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        311
-#define _APS_NEXT_COMMAND_VALUE         32890
+#define _APS_NEXT_COMMAND_VALUE         32896
 #define _APS_NEXT_CONTROL_VALUE         1000
 #define _APS_NEXT_SYMED_VALUE           310
 #endif

@@ -206,8 +206,10 @@ BEGIN_MESSAGE_MAP(CEntornVGIView, CView)
 		ON_COMMAND(ID_ARXIU_OBRIR_FITXER_FONT_LLUM, &CEntornVGIView::OnArxiuObrirFitxerFontLlum)
 		ON_COMMAND(ID_OBJECTE_CAP, &CEntornVGIView::OnObjecteCap)
 		ON_UPDATE_COMMAND_UI(ID_OBJECTE_CAP, &CEntornVGIView::OnUpdateObjecteCap)
-		ON_COMMAND(ID_OBJECTE_E1, &CEntornVGIView::OnObjecteE1)
-		ON_UPDATE_COMMAND_UI(ID_OBJECTE_E1, &CEntornVGIView::OnUpdateObjecteE1)
+		ON_COMMAND(ID_SISTEMASOLAR_TOT, &CEntornVGIView::OnSistemasolarTot)
+		ON_UPDATE_COMMAND_UI(ID_SISTEMASOLAR_TOT, &CEntornVGIView::OnUpdateSistemasolarTot)
+		ON_COMMAND(ID_SISTEMASOLAR_ROTATERRA, &CEntornVGIView::OnSistemasolarRotaterra)
+		ON_UPDATE_COMMAND_UI(ID_SISTEMASOLAR_ROTATERRA, &CEntornVGIView::OnUpdateSistemasolarRotaterra)
 		END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
@@ -2431,6 +2433,7 @@ void CEntornVGIView::OnLButtonUp(UINT nFlags, CPoint point)
 		else SetTimer(WM_TIMER, 10, NULL);
 	}
 
+
 	CView::OnLButtonUp(nFlags, point);
 }
 
@@ -2493,7 +2496,7 @@ void CEntornVGIView::OnMouseMove(UINT nFlags, CPoint point)
 		CSize gir = m_PosEAvall - point;
 		m_PosEAvall = point;
 		if (camera == CAM_ESFERICA)
-		{	// Càmera Esfèrica
+		{	// Càmera Esfèrica 
 			OPV.beta = OPV.beta - gir.cx / 2;
 			OPV.alfa = OPV.alfa + gir.cy / 2;
 
@@ -2752,7 +2755,12 @@ void CEntornVGIView::OnTimer(UINT_PTR nIDEvent)
 		// Crida a OnPaint() per redibuixar l'escena
 		InvalidateRect(NULL, false);
 		}
+	else if (SistemaSolar.Terra.rota) {
+		float rot = SistemaSolar.Terra.rad + radians(0.1);
+		while (rot > 360) rot = rot - 360;	while (rot < 0) rot = rot + 360;
 
+		SistemaSolar.Terra.rad = rot;
+	}
 	CView::OnTimer(nIDEvent);
 }
 
@@ -5121,11 +5129,11 @@ std::string CEntornVGIView::CString2String(const CString& cString)
 	return strStd;
 }
 
-
-void CEntornVGIView::OnObjecteE1()
+void CEntornVGIView::OnSistemasolarTot()
 {
 	// TODO: Agregue aquí su código de controlador de comandos
-	objecte = EX1;
+		// TODO: Agregue aquí su código de controlador de comandos
+	objecte = SS;
 
 	// Entorn VGI: Activació el contexte OpenGL
 	wglMakeCurrent(m_pDC->GetSafeHdc(), m_hRC);
@@ -5137,9 +5145,7 @@ void CEntornVGIView::OnObjecteE1()
 	SetColor4d(col_obj.r, col_obj.g, col_obj.b, col_obj.a);
 
 	//if (Get_VAOId(GLU_CYLINDER) != 0) deleteVAOList(GLU_CYLINDER);
-	Set_VAOList(GLU_DISK, loadgluDisk_VAO(2, 3, 20, 5));	// Càrrega disc com a VAO
-
-	Set_VAOList(GLUT_SPHERE, loadglutSolidSphere_EBO(1.5, 20, 5));
+	Set_VAOList(GLUT_SPHERE, loadglutSolidSphere_EBO(1.0, 30.0, 30.0));
 
 	// Entorn VGI: Activació el contexte OpenGL. Permet la coexistencia d'altres contextes de generació
 	wglMakeCurrent(m_pDC->GetSafeHdc(), NULL);
@@ -5149,8 +5155,24 @@ void CEntornVGIView::OnObjecteE1()
 }
 
 
-void CEntornVGIView::OnUpdateObjecteE1(CCmdUI* pCmdUI)
-{	// TODO: Agregue aquí su código de controlador de IU para actualización de comandos
-	if (objecte == EX1) pCmdUI->SetCheck(1);
+void CEntornVGIView::OnUpdateSistemasolarTot(CCmdUI* pCmdUI)
+{
+	// TODO: Agregue aquí su código de controlador de IU para actualización de comandos
+	if (objecte == SS) pCmdUI->SetCheck(1);
+	else pCmdUI->SetCheck(0);
+}
+
+
+void CEntornVGIView::OnSistemasolarRotaterra()
+{
+	// TODO: Agregue aquí su código de controlador de comandos
+	SistemaSolar.Terra.rota = true;
+	SetTimer(WM_TIMER, 10, NULL);
+}
+
+
+void CEntornVGIView::OnUpdateSistemasolarRotaterra(CCmdUI* pCmdUI)
+{// TODO: Agregue aquí su código de controlador de IU para actualización de comandos
+	if (objecte == RT) pCmdUI->SetCheck(1);
 	else pCmdUI->SetCheck(0);
 }

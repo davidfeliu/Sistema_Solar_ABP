@@ -125,10 +125,10 @@ void dibuixa_EscenaGL(GLuint sh_programID, bool eix, GLuint axis_Id, CMask3D rei
 	switch (objecte)
 	{
 
-	case EX1:
+	case SS:
 		SeleccionaColorMaterial(sh_programID, col_object, sw_mat);
 
-		E1(sh_programID, MatriuVista, MatriuTG, sw_mat);
+		SistSolar(sh_programID, MatriuVista, MatriuTG, sw_mat);
 		break;
 
 // Arc
@@ -663,7 +663,7 @@ CVAO loadSea_VAO(CColor colorM)
 	return seaVAO;
 }
 
-void E1(GLint shaderId, glm::mat4 MatriuVista, glm::mat4 MatriuTG, bool sw_mat[4])
+void SistSolar(GLint shaderId, glm::mat4 MatriuVista, glm::mat4 MatriuTG, bool sw_mat[4])
 {
 	glm::mat4 TransMatrix(1.0), NormalMatrix(1.0), ModelMatrix(1.0);
 	CColor col_object;
@@ -671,31 +671,26 @@ void E1(GLint shaderId, glm::mat4 MatriuVista, glm::mat4 MatriuTG, bool sw_mat[4
 	col_object.r = 1.0;	col_object.g = 1.0;		col_object.b = 1.0;	 col_object.a = 1.0;
 	SeleccionaColorMaterial(shaderId, col_object, sw_mat);
 
-	ModelMatrix = glm::rotate(MatriuTG, radians(30.f), vec3(0.0f, 1.0f, 0.0f));
-	// Pas ModelView Matrix a shader
+
+	// Sol
+	ModelMatrix = glm::scale(MatriuTG, vec3(3.0, 3.0, 3.0));
+	// Pas ModelView Matrix a shade
 	glUniformMatrix4fv(glGetUniformLocation(shaderId, "modelMatrix"), 1, GL_FALSE, &ModelMatrix[0][0]);
 	NormalMatrix = transpose(inverse(MatriuVista * ModelMatrix));
 	// Pas NormalMatrix a shader
 	glUniformMatrix4fv(glGetUniformLocation(shaderId, "normalMatrix"), 1, GL_FALSE, &NormalMatrix[0][0]);
-	draw_TriEBO_Object(GLU_DISK);
-	
-	ModelMatrix = MatriuTG;
+	draw_TriEBO_Object(GLUT_SPHERE);	
+
+	// Terra 
+	TransMatrix = glm::rotate(MatriuTG, radians(30.0f), vec3(1.0, 0.0, 0.0));
+	ModelMatrix = glm::translate(TransMatrix, vec3(0.0, 5.0, 0.0));
 	// Pas ModelView Matrix a shade
 	glUniformMatrix4fv(glGetUniformLocation(shaderId, "modelMatrix"), 1, GL_FALSE, &ModelMatrix[0][0]);
 	NormalMatrix = transpose(inverse(MatriuVista * ModelMatrix));
 	// Pas NormalMatrix a shader
 	glUniformMatrix4fv(glGetUniformLocation(shaderId, "normalMatrix"), 1, GL_FALSE, &NormalMatrix[0][0]);
 	draw_TriEBO_Object(GLUT_SPHERE);
-
-
-	TransMatrix = glm::scale(MatriuTG, vec3(1.0f, 1.0f, 2.0f));
-	ModelMatrix = glm::translate(TransMatrix, vec3(0.0, 2.0, 0.5));
-	// Pas ModelView Matrix a shader
-	glUniformMatrix4fv(glGetUniformLocation(shaderId, "modelMatrix"), 1, GL_FALSE, &ModelMatrix[0][0]);
-	NormalMatrix = transpose(inverse(MatriuVista * ModelMatrix));
-	// Pas NormalMatrix a shader
-	glUniformMatrix4fv(glGetUniformLocation(shaderId, "normalMatrix"), 1, GL_FALSE, &NormalMatrix[0][0]);
-	draw_TriEBO_Object(GLUT_CUBE);
+		
 }
 
 

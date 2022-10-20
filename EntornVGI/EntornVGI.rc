@@ -360,7 +360,11 @@ BEGIN
         MENUITEM "Tie",                         ID_OBJECTE_TIE, CHECKED
         MENUITEM "Matriu Primitives",           ID_OBJECTE_MATRIU_PRIMITIVES, CHECKED
         MENUITEM "Matriu Primitives VAO",       ID_OBJECTE_MATRIU_PRIMITIVES_VBO, CHECKED
-        MENUITEM "E1",                          ID_OBJECTE_E1, CHECKED
+        POPUP "SistemaSolar"
+        BEGIN
+            MENUITEM "Tot",                         ID_SISTEMASOLAR_TOT, CHECKED
+            MENUITEM "RotaTerra",                   ID_SISTEMASOLAR_ROTATERRA, CHECKED
+        END
     END
     POPUP "Transforma"
     BEGIN

@@ -166,6 +166,7 @@ public:
 // Entorn VGI: Objecte OBJ:
 	COBJModel* ObOBJ;		// Variable d'objecte format OBJ (*.OBJ)
 	CVAO vao_OBJ;			// Identificador VAO per a objecte OBJ
+	SSolar SistemaSolar;
 //	int nvert_OBJ;			// Nombre de vèrtexs de l'objecte OBJ
 
 // Entorn VGI: OBJECTE --> Corbes Bezier i BSpline
@@ -440,8 +441,10 @@ public:
 	afx_msg void OnArxiuObrirFitxerFontLlum();
 	afx_msg void OnObjecteCap();
 	afx_msg void OnUpdateObjecteCap(CCmdUI* pCmdUI);
-	afx_msg void OnObjecteE1();
-	afx_msg void OnUpdateObjecteE1(CCmdUI* pCmdUI);
+	afx_msg void OnSistemasolarTot();
+	afx_msg void OnUpdateSistemasolarTot(CCmdUI* pCmdUI);
+	afx_msg void OnSistemasolarRotaterra();
+	afx_msg void OnUpdateSistemasolarRotaterra(CCmdUI* pCmdUI);
 };
 
 #ifndef _DEBUG  // Versión de depuración en EntornVGIView.cpp

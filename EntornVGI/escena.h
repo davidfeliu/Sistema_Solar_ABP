@@ -37,7 +37,7 @@ void Canon(GLint shaderId, glm::mat4 MatriuVista, glm::mat4 MatriuTG, bool sw_ma
 void Cuerpo(GLint shaderId, glm::mat4 MatriuVista, glm::mat4 MatriuTG, bool sw_mat[4]);
 void Cabina(GLint shaderId, glm::mat4 MatriuVista, glm::mat4 MatriuTG, bool sw_mat[4]);
 
-void E1(GLint shaderId, glm::mat4 MatriuVista, glm::mat4 MatriuTG, bool sw_mat[4]);
+void SistSolar(GLint shaderId, glm::mat4 MatriuVista, glm::mat4 MatriuTG, bool sw_mat[4]);
 // Entorn VGI: Funcions locals a escena.cpp
 // CString2char: Funció de conversió de variable CString a char * per a noms de fitxers 
 //char* CString2Char(CString entrada);

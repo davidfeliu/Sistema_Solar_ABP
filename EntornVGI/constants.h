@@ -29,7 +29,8 @@
 
 //-------------- VGI: Tipus d'Objectes
 #define ARC 'a'
-#define EX1 'Z'
+#define SS 'Z'
+#define RT 'X'
 #define CAMIO 'm'
 #define CILINDRE 'y'
 #define CUB 'c'
@@ -206,6 +207,24 @@ struct LLUM
 	GLfloat spotdirection[3];	// Vector de direció de la font de llum restringida (x,y,z).
 	GLfloat spotcoscutoff;		// Coseno de l'angle d'obertura de la font de llum restringida.
 	GLfloat spotexponent;		// Exponent que indica l'atenuació de la font del centre de l'eix a l'exterior, segons model de Warn.
+};
+
+struct Planeta
+{
+	bool rota;
+	float Tx;
+	float Ty;
+	float Tz;
+	float rad;
+	float Sx;
+	float Sy;
+	float Sz;
+};
+
+struct SSolar
+{
+	Planeta Sol;
+	Planeta Terra;
 };
 
 #endif
