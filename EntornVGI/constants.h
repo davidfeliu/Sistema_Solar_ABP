@@ -29,8 +29,8 @@
 
 //-------------- VGI: Tipus d'Objectes
 #define ARC 'a'
-#define SS 'Z'
-#define RT 'X'
+#define SSD 'Z'
+#define SSR 'X'
 #define CAMIO 'm'
 #define CILINDRE 'y'
 #define CUB 'c'
@@ -211,14 +211,21 @@ struct LLUM
 
 struct Planeta
 {
-	bool rota;
-	float Tx;
-	float Ty;
-	float Tz;
+	float tx;
+	float ty;
+	float tz;
+
+	float sx;
+	float sy;
+	float sz;
+
+	float rx;
+	float ry;
+	float rz;
 	float rad;
-	float Sx;
-	float Sy;
-	float Sz;
+	bool rota;
+
+	float radi;
 };
 
 struct SSolar

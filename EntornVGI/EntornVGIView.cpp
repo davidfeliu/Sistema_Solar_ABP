@@ -37,6 +37,7 @@
 #include "EntornVGIView.h"
 #include "visualitzacio.h"	// Include funcions de projeció i il.luminació
 #include "escena.h"			// Include funcions d'objectes OpenGL
+#include <cmath>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -206,10 +207,10 @@ BEGIN_MESSAGE_MAP(CEntornVGIView, CView)
 		ON_COMMAND(ID_ARXIU_OBRIR_FITXER_FONT_LLUM, &CEntornVGIView::OnArxiuObrirFitxerFontLlum)
 		ON_COMMAND(ID_OBJECTE_CAP, &CEntornVGIView::OnObjecteCap)
 		ON_UPDATE_COMMAND_UI(ID_OBJECTE_CAP, &CEntornVGIView::OnUpdateObjecteCap)
-		ON_COMMAND(ID_SISTEMASOLAR_TOT, &CEntornVGIView::OnSistemasolarTot)
-		ON_UPDATE_COMMAND_UI(ID_SISTEMASOLAR_TOT, &CEntornVGIView::OnUpdateSistemasolarTot)
-		ON_COMMAND(ID_SISTEMASOLAR_ROTATERRA, &CEntornVGIView::OnSistemasolarRotaterra)
-		ON_UPDATE_COMMAND_UI(ID_SISTEMASOLAR_ROTATERRA, &CEntornVGIView::OnUpdateSistemasolarRotaterra)
+		ON_COMMAND(ID_SISTEMASOLAR_DIBUIXA, &CEntornVGIView::OnSistemasolarDibuixa)
+		ON_UPDATE_COMMAND_UI(ID_SISTEMASOLAR_DIBUIXA, &CEntornVGIView::OnUpdateSistemasolarDibuixa)
+		ON_COMMAND(ID_SISTEMASOLAR_R, &CEntornVGIView::OnSistemasolarR)
+		ON_UPDATE_COMMAND_UI(ID_SISTEMASOLAR_R, &CEntornVGIView::OnUpdateSistemasolarR)
 		END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
@@ -249,9 +250,10 @@ CEntornVGIView::CEntornVGIView()
 	tr_cpv.x = 0;	tr_cpv.y = 0;	tr_cpv.z = 0;		tr_cpvF.x = 0;	tr_cpvF.y = 0;	tr_cpvF.z = 0;
 
 // Entorn VGI: Variables de control per les opcions de menú Projecció, Objecte
-	projeccio = CAP;	// projeccio = PERSPECT;
+	projeccio = CAP;	//projeccio = PERSPECT;
 	ProjectionMatrix = glm::mat4(1.0);	// Inicialitzar a identitat
 	objecte = CAP;		// objecte = TETERA;
+
 
 // Entorn VGI: Variables de control Skybox Cube
 	SkyBoxCube = false;		skC_programID = 0;		
@@ -1029,7 +1031,7 @@ void CEntornVGIView::dibuixa_Escena()
 		textura, texturesID, textura_map, tFlag_invert_Y,
 		npts_T, PC_t, pas_CS, sw_Punts_Control, dibuixa_TriedreFrenet, 
 		FIT_3DS, FIT_OBJ, // VAO's i nombre de vèrtexs dels objectes 3DS i OBJ
-		ViewMatrix, GTMatrix);
+		ViewMatrix, GTMatrix, SS);
 }
 
 // Barra_Estat: Actualitza la barra d'estat (Status Bar) de l'aplicació amb els
@@ -2433,7 +2435,6 @@ void CEntornVGIView::OnLButtonUp(UINT nFlags, CPoint point)
 		else SetTimer(WM_TIMER, 10, NULL);
 	}
 
-
 	CView::OnLButtonUp(nFlags, point);
 }
 
@@ -2496,7 +2497,7 @@ void CEntornVGIView::OnMouseMove(UINT nFlags, CPoint point)
 		CSize gir = m_PosEAvall - point;
 		m_PosEAvall = point;
 		if (camera == CAM_ESFERICA)
-		{	// Càmera Esfèrica 
+		{	// Càmera Esfèrica
 			OPV.beta = OPV.beta - gir.cx / 2;
 			OPV.alfa = OPV.alfa + gir.cy / 2;
 
@@ -2755,12 +2756,39 @@ void CEntornVGIView::OnTimer(UINT_PTR nIDEvent)
 		// Crida a OnPaint() per redibuixar l'escena
 		InvalidateRect(NULL, false);
 		}
-	else if (SistemaSolar.Terra.rota) {
-		float rot = SistemaSolar.Terra.rad + radians(0.1);
-		while (rot > 360) rot = rot - 360;	while (rot < 0) rot = rot + 360;
+	else if(SS.Terra.rota) {
 
-		SistemaSolar.Terra.rad = rot;
+		// ( x - a )^2 + ( y - b )^2 = R^2
+		float x = SS.Terra.tx;
+		float y = SS.Terra.ty; 
+		float r = SS.Terra.radi;
+		if (y > 0) {
+			x = x + 0.1;
+			if (x > r) x = r;
+			y = sqrt(r * r - x * x);
+		}
+		else if (y < 0) {
+			x = x - 0.1;
+			if (x < -r) x = -r;
+			y = -sqrt(r * r - x * x);
+		}
+		else if (x == -r) {
+			x = x + 0.1;
+			y = sqrt(r * r - x * x);
+		}
+		else {
+			x = x - 0.1;
+			y = -sqrt(r * r - x * x);
+		}
+
+		
+		
+		SS.Terra.tx = x;
+		SS.Terra.ty = y;
+
+		InvalidateRect(NULL, false);
 	}
+
 	CView::OnTimer(nIDEvent);
 }
 
@@ -5129,11 +5157,47 @@ std::string CEntornVGIView::CString2String(const CString& cString)
 	return strStd;
 }
 
-void CEntornVGIView::OnSistemasolarTot()
+
+void CEntornVGIView::initSS()
+{
+	// Sol
+	SS.Sol.tx = 0.0;
+	SS.Sol.ty = 0.0;
+	SS.Sol.tz = 0.0;
+
+	SS.Sol.sx = 5.0;
+	SS.Sol.sy = 5.0;
+	SS.Sol.sz = 5.0;
+
+	SS.Sol.rx = 0.0;
+	SS.Sol.ry = 0.0;
+	SS.Sol.rz = 0.0;
+	SS.Sol.rad = 0.0;
+	SS.Sol.rota = false;
+	SS.Sol.radi = 0.0;
+
+	// Terra
+	SS.Terra.tx = 0.0;
+	SS.Terra.ty = 7.0;
+	SS.Terra.tz = 0.0;
+
+	SS.Terra.sx = 1.0;
+	SS.Terra.sy = 1.0;
+	SS.Terra.sz = 1.0;
+
+	SS.Terra.rx = 0.0;
+	SS.Terra.ry = 0.0;
+	SS.Terra.rz = 0.0;
+	SS.Terra.rad = 0.0;
+	SS.Terra.rota = false;
+	SS.Terra.radi = 7.0;
+}
+
+
+void CEntornVGIView::OnSistemasolarDibuixa()
 {
 	// TODO: Agregue aquí su código de controlador de comandos
-		// TODO: Agregue aquí su código de controlador de comandos
-	objecte = SS;
+	objecte = SSD;
 
 	// Entorn VGI: Activació el contexte OpenGL
 	wglMakeCurrent(m_pDC->GetSafeHdc(), m_hRC);
@@ -5145,7 +5209,11 @@ void CEntornVGIView::OnSistemasolarTot()
 	SetColor4d(col_obj.r, col_obj.g, col_obj.b, col_obj.a);
 
 	//if (Get_VAOId(GLU_CYLINDER) != 0) deleteVAOList(GLU_CYLINDER);
-	Set_VAOList(GLUT_SPHERE, loadglutSolidSphere_EBO(1.0, 30.0, 30.0));
+	//Set_VAOList(GLU_DISK, loadgluDisk_VAO(2, 3, 20, 5));	// Càrrega disc com a VAO
+
+	initSS();
+
+	Set_VAOList(GLUT_SPHERE, loadglutSolidSphere_EBO(1.0, 20, 20));
 
 	// Entorn VGI: Activació el contexte OpenGL. Permet la coexistencia d'altres contextes de generació
 	wglMakeCurrent(m_pDC->GetSafeHdc(), NULL);
@@ -5155,24 +5223,23 @@ void CEntornVGIView::OnSistemasolarTot()
 }
 
 
-void CEntornVGIView::OnUpdateSistemasolarTot(CCmdUI* pCmdUI)
-{
-	// TODO: Agregue aquí su código de controlador de IU para actualización de comandos
-	if (objecte == SS) pCmdUI->SetCheck(1);
+void CEntornVGIView::OnUpdateSistemasolarDibuixa(CCmdUI* pCmdUI)
+{	// TODO: Agregue aquí su código de controlador de IU para actualización de comandos
+	if (objecte == SSD) pCmdUI->SetCheck(1);
 	else pCmdUI->SetCheck(0);
 }
 
 
-void CEntornVGIView::OnSistemasolarRotaterra()
+void CEntornVGIView::OnSistemasolarR()
 {
-	// TODO: Agregue aquí su código de controlador de comandos
-	SistemaSolar.Terra.rota = true;
-	SetTimer(WM_TIMER, 10, NULL);
+	SS.Terra.rota = !SS.Terra.rota;
+	if (SS.Terra.rota)
+		SetTimer(WM_TIMER, 10, NULL);
 }
 
 
-void CEntornVGIView::OnUpdateSistemasolarRotaterra(CCmdUI* pCmdUI)
-{// TODO: Agregue aquí su código de controlador de IU para actualización de comandos
-	if (objecte == RT) pCmdUI->SetCheck(1);
+void CEntornVGIView::OnUpdateSistemasolarR(CCmdUI* pCmdUI)
+{	// TODO: Agregue aquí su código de controlador de IU para actualización de comandos
+	if (SS.Terra.rota) pCmdUI->SetCheck(1);
 	else pCmdUI->SetCheck(0);
 }

@@ -362,8 +362,8 @@ BEGIN
         MENUITEM "Matriu Primitives VAO",       ID_OBJECTE_MATRIU_PRIMITIVES_VBO, CHECKED
         POPUP "SistemaSolar"
         BEGIN
-            MENUITEM "Tot",                         ID_SISTEMASOLAR_TOT, CHECKED
-            MENUITEM "RotaTerra",                   ID_SISTEMASOLAR_ROTATERRA, CHECKED
+            MENUITEM "Dibuixa",                     ID_SISTEMASOLAR_DIBUIXA, CHECKED
+            MENUITEM "Rota",                        ID_SISTEMASOLAR_R, CHECKED
         END
     END
     POPUP "Transforma"

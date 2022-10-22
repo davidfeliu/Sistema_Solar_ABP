@@ -78,6 +78,9 @@ public:
 	char projeccio;	// Menú Projecció: Tipus de projeccio
 	glm::mat4 ProjectionMatrix;// Matriu de Projecció a passar al shader
 	char objecte;	// Menú Objecte: Tipus d'Objecte
+	
+	SSolar SS;
+	float incX;
 
 // Entorn VGI: Variables de control Skybox Cube
 	bool SkyBoxCube;			// Booleana que controla si es visualitza Skybox [TRUE] o no [FALSE].
@@ -166,7 +169,6 @@ public:
 // Entorn VGI: Objecte OBJ:
 	COBJModel* ObOBJ;		// Variable d'objecte format OBJ (*.OBJ)
 	CVAO vao_OBJ;			// Identificador VAO per a objecte OBJ
-	SSolar SistemaSolar;
 //	int nvert_OBJ;			// Nombre de vèrtexs de l'objecte OBJ
 
 // Entorn VGI: OBJECTE --> Corbes Bezier i BSpline
@@ -441,10 +443,12 @@ public:
 	afx_msg void OnArxiuObrirFitxerFontLlum();
 	afx_msg void OnObjecteCap();
 	afx_msg void OnUpdateObjecteCap(CCmdUI* pCmdUI);
-	afx_msg void OnSistemasolarTot();
-	afx_msg void OnUpdateSistemasolarTot(CCmdUI* pCmdUI);
-	afx_msg void OnSistemasolarRotaterra();
-	afx_msg void OnUpdateSistemasolarRotaterra(CCmdUI* pCmdUI);
+	afx_msg void initSS();
+
+	afx_msg void OnSistemasolarDibuixa();
+	afx_msg void OnUpdateSistemasolarDibuixa(CCmdUI* pCmdUI);
+	afx_msg void OnSistemasolarR();
+	afx_msg void OnUpdateSistemasolarR(CCmdUI* pCmdUI);
 };
 
 #ifndef _DEBUG  // Versión de depuración en EntornVGIView.cpp

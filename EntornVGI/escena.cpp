@@ -80,7 +80,7 @@ void dibuixa_EscenaGL(GLuint sh_programID, bool eix, GLuint axis_Id, CMask3D rei
 			bool textur, GLint texturID[NUM_MAX_TEXTURES], bool textur_map, bool flagInvertY,
 			int nptsU, CPunt3D PC_u[MAX_PATCH_CORBA], GLfloat pasCS, bool sw_PC, bool dib_TFrenet,
 			GLuint vaoList_3DS, GLuint vaoList_OBJ,
-			glm::mat4 MatriuVista, glm::mat4 MatriuTG)
+			glm::mat4 MatriuVista, glm::mat4 MatriuTG, SSolar SistemaSolar)
 {
 	float altfar = 0;
 	GLint npunts = 0, nvertexs = 0;
@@ -125,12 +125,11 @@ void dibuixa_EscenaGL(GLuint sh_programID, bool eix, GLuint axis_Id, CMask3D rei
 	switch (objecte)
 	{
 
-	case SS:
+	case SSD:
 		SeleccionaColorMaterial(sh_programID, col_object, sw_mat);
 
-		SistSolar(sh_programID, MatriuVista, MatriuTG, sw_mat);
+		SSDibuixa(sh_programID, MatriuVista, MatriuTG, sw_mat, SistemaSolar);
 		break;
-
 // Arc
 	case ARC:
 		// Definició propietats de reflexió (emissió, ambient, difusa, especular) del material pel color de l'objecte.
@@ -663,36 +662,41 @@ CVAO loadSea_VAO(CColor colorM)
 	return seaVAO;
 }
 
-void SistSolar(GLint shaderId, glm::mat4 MatriuVista, glm::mat4 MatriuTG, bool sw_mat[4])
+void SSDibuixa(GLint shaderId, glm::mat4 MatriuVista, glm::mat4 MatriuTG, bool sw_mat[4], SSolar SS)
 {
+	Planeta sol = SS.Sol;
+	Planeta terra = SS.Terra;
+
+
 	glm::mat4 TransMatrix(1.0), NormalMatrix(1.0), ModelMatrix(1.0);
 	CColor col_object;
 
 	col_object.r = 1.0;	col_object.g = 1.0;		col_object.b = 1.0;	 col_object.a = 1.0;
 	SeleccionaColorMaterial(shaderId, col_object, sw_mat);
-
-
-	// Sol
-	ModelMatrix = glm::scale(MatriuTG, vec3(3.0, 3.0, 3.0));
-	// Pas ModelView Matrix a shade
-	glUniformMatrix4fv(glGetUniformLocation(shaderId, "modelMatrix"), 1, GL_FALSE, &ModelMatrix[0][0]);
-	NormalMatrix = transpose(inverse(MatriuVista * ModelMatrix));
-	// Pas NormalMatrix a shader
-	glUniformMatrix4fv(glGetUniformLocation(shaderId, "normalMatrix"), 1, GL_FALSE, &NormalMatrix[0][0]);
-	draw_TriEBO_Object(GLUT_SPHERE);	
-
-	// Terra 
-	TransMatrix = glm::rotate(MatriuTG, radians(30.0f), vec3(1.0, 0.0, 0.0));
-	ModelMatrix = glm::translate(TransMatrix, vec3(0.0, 5.0, 0.0));
+	
+	//SOl
+	TransMatrix = glm::translate(MatriuTG, vec3(sol.tx, sol.ty, sol.tz));
+	if(sol.rota)
+		TransMatrix = glm::rotate(TransMatrix, radians(sol.rad), vec3(sol.rx, sol.ry, sol.rz));
+	ModelMatrix = glm::scale(TransMatrix, vec3(sol.sz, sol.sy, sol.sz));
 	// Pas ModelView Matrix a shade
 	glUniformMatrix4fv(glGetUniformLocation(shaderId, "modelMatrix"), 1, GL_FALSE, &ModelMatrix[0][0]);
 	NormalMatrix = transpose(inverse(MatriuVista * ModelMatrix));
 	// Pas NormalMatrix a shader
 	glUniformMatrix4fv(glGetUniformLocation(shaderId, "normalMatrix"), 1, GL_FALSE, &NormalMatrix[0][0]);
 	draw_TriEBO_Object(GLUT_SPHERE);
-		
+	
+	//Terra
+	TransMatrix = glm::translate(MatriuTG, vec3(terra.tx, terra.ty, terra.tz));
+	//	TransMatrix = glm::rotate(TransMatrix, radians(terra.rad), vec3(terra.rx, terra.ry, terra.rz));
+	ModelMatrix = glm::scale(TransMatrix, vec3(terra.sx, terra.sy, terra.sz));
+	// Pas ModelView Matrix a shade
+	glUniformMatrix4fv(glGetUniformLocation(shaderId, "modelMatrix"), 1, GL_FALSE, &ModelMatrix[0][0]);
+	NormalMatrix = transpose(inverse(MatriuVista * ModelMatrix));
+	// Pas NormalMatrix a shader
+	glUniformMatrix4fv(glGetUniformLocation(shaderId, "normalMatrix"), 1, GL_FALSE, &NormalMatrix[0][0]);
+	draw_TriEBO_Object(GLUT_SPHERE);
 }
-
 
 // OBJECTE TIE: FETS PER ALUMNES -----------------------------------------------------------------
 
