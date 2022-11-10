@@ -342,6 +342,11 @@ BEGIN
     POPUP "Objecte"
     BEGIN
         MENUITEM "Cap",                         ID_OBJECTE_CAP, CHECKED
+        POPUP "SistemaSolar"
+        BEGIN
+            MENUITEM "Dibuixa",                     ID_SISTEMASOLAR_DIBUIXA
+            MENUITEM "Rota",                        ID_SISTEMASOLAR_ROTA
+        END
         MENUITEM "Cub",                         32787, CHECKED
         MENUITEM "Cub RGB",                     ID_OBJECTE_CUB_RGB, CHECKED
         MENUITEM "Esfera",                      32788, CHECKED
@@ -360,11 +365,6 @@ BEGIN
         MENUITEM "Tie",                         ID_OBJECTE_TIE, CHECKED
         MENUITEM "Matriu Primitives",           ID_OBJECTE_MATRIU_PRIMITIVES, CHECKED
         MENUITEM "Matriu Primitives VAO",       ID_OBJECTE_MATRIU_PRIMITIVES_VBO, CHECKED
-        POPUP "SistemaSolar"
-        BEGIN
-            MENUITEM "Dibuixa",                     ID_SISTEMASOLAR_DIBUIXA, CHECKED
-            MENUITEM "Rota",                        ID_SISTEMASOLAR_R, CHECKED
-        END
     END
     POPUP "Transforma"
     BEGIN

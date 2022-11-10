@@ -28,9 +28,10 @@
 #define POLARX 'X'
 
 //-------------- VGI: Tipus d'Objectes
+
+#define SISTEMASOLAR 'z'
+
 #define ARC 'a'
-#define SSD 'Z'
-#define SSR 'X'
 #define CAMIO 'm'
 #define CILINDRE 'y'
 #define CUB 'c'
@@ -209,6 +210,8 @@ struct LLUM
 	GLfloat spotexponent;		// Exponent que indica l'atenuació de la font del centre de l'eix a l'exterior, segons model de Warn.
 };
 
+
+
 struct Planeta
 {
 	float tx;
@@ -222,16 +225,37 @@ struct Planeta
 	float rx;
 	float ry;
 	float rz;
-	float rad;
+
+	GLuint textura;
 	bool rota;
 
+	//angulo
+	float rad;
+	//radio orbita
 	float radi;
+	float vel;
+
+
 };
 
 struct SSolar
 {
 	Planeta Sol;
-	Planeta Terra;
-};
+	Planeta Mercurio;
+	Planeta Venus;
+	Planeta Tierra;
+	Planeta Luna;
+	Planeta Marte;
+	Planeta Jupiter;
+	Planeta Saturno; 
+	Planeta AnilloSaturno;
+	Planeta Urano;
+	Planeta Neptuno;
 
+	UINT selecCamaraPlaneta = VK_NUMPAD8;
+
+	bool rotacion;
+
+
+};
 #endif

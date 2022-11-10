@@ -15,6 +15,208 @@
 #include "material.h"
 #include "visualitzacio.h"
 #include "escena.h"
+const int IMAGEMAX = 2048;
+
+void sistemaSolar(GLint shaderId, glm::mat4 MatriuVista, glm::mat4 MatriuTG, bool sw_mat[4], SSolar SS)
+{
+	//structs para editar los objetos
+	Planeta sol = SS.Sol;
+	Planeta mercurio = SS.Mercurio;
+	Planeta venus = SS.Venus;
+	Planeta tierra = SS.Tierra;
+	Planeta luna = SS.Luna;
+	Planeta marte = SS.Marte;
+	Planeta jupiter = SS.Jupiter;
+	Planeta saturno = SS.Saturno;
+	Planeta anilloSaturno = SS.AnilloSaturno;
+	Planeta urano = SS.Urano;
+	Planeta neptuno = SS.Neptuno;
+
+
+	//variables y cosas para crear y editar los objetos
+	glm::mat4 TransMatrix(1.0), NormalMatrix(1.0), ModelMatrix(1.0);
+	CColor col_object;
+
+	col_object.r = 1.0;	col_object.g = 1.0;		col_object.b = 1.0;	 col_object.a = 1.0;
+	SeleccionaColorMaterial(shaderId, col_object, sw_mat);
+	
+	//sol
+	SetTextureParameters(sol.textura, true, true, true, false);
+	glActiveTexture(GL_TEXTURE0);
+
+	ModelMatrix = glm::scale(TransMatrix, vec3(sol.sx, sol.sy, sol.sz));
+	// Pas ModelView Matrix a shade
+	glUniformMatrix4fv(glGetUniformLocation(shaderId, "modelMatrix"), 1, GL_FALSE, &ModelMatrix[0][0]);
+	NormalMatrix = transpose(inverse(MatriuVista * ModelMatrix));
+	// Pas NormalMatrix a shader
+	glUniformMatrix4fv(glGetUniformLocation(shaderId, "normalMatrix"), 1, GL_FALSE, &NormalMatrix[0][0]);
+	draw_TriEBO_Object(GLU_SPHERE);
+	glBindTexture(GL_TEXTURE_2D, 0);
+	
+
+	//mercurio
+	SetTextureParameters(mercurio.textura, true, true, true, false);
+	glActiveTexture(GL_TEXTURE0);
+
+	TransMatrix = glm::translate(MatriuTG, vec3(mercurio.tx, mercurio.ty, mercurio.tz));
+	ModelMatrix = glm::scale(TransMatrix, vec3(mercurio.sx, mercurio.sy, mercurio.sz));
+	// Pas ModelView Matrix a shade
+	glUniformMatrix4fv(glGetUniformLocation(shaderId, "modelMatrix"), 1, GL_FALSE, &ModelMatrix[0][0]);
+	NormalMatrix = transpose(inverse(MatriuVista * ModelMatrix));
+	// Pas NormalMatrix a shader
+	glUniformMatrix4fv(glGetUniformLocation(shaderId, "normalMatrix"), 1, GL_FALSE, &NormalMatrix[0][0]);
+	draw_TriEBO_Object(GLU_SPHERE);
+	glBindTexture(GL_TEXTURE_2D, 0);
+
+
+	//venus
+	SetTextureParameters(venus.textura, true, true, true, false);
+	glActiveTexture(GL_TEXTURE0);
+
+	TransMatrix = glm::translate(MatriuTG, vec3(venus.tx, venus.ty, venus.tz));
+	ModelMatrix = glm::scale(TransMatrix, vec3(venus.sx, venus.sy, venus.sz));
+	// Pas ModelView Matrix a shade
+	glUniformMatrix4fv(glGetUniformLocation(shaderId, "modelMatrix"), 1, GL_FALSE, &ModelMatrix[0][0]);
+	NormalMatrix = transpose(inverse(MatriuVista * ModelMatrix));
+	// Pas NormalMatrix a shader
+	glUniformMatrix4fv(glGetUniformLocation(shaderId, "normalMatrix"), 1, GL_FALSE, &NormalMatrix[0][0]);
+	draw_TriEBO_Object(GLU_SPHERE);
+	glBindTexture(GL_TEXTURE_2D, 0);
+
+
+	//tierra
+	SetTextureParameters(tierra.textura, true, true, true, false);
+	glActiveTexture(GL_TEXTURE0);
+
+	TransMatrix = glm::translate(MatriuTG, vec3(tierra.tx, tierra.ty, tierra.tz));
+	TransMatrix = glm::scale(TransMatrix, vec3(tierra.sx, tierra.sy, tierra.sz));
+	ModelMatrix = glm::rotate(TransMatrix, radians(180.f), vec3(tierra.rx, tierra.ry, tierra.rz));
+	// Pas ModelView Matrix a shade
+	glUniformMatrix4fv(glGetUniformLocation(shaderId, "modelMatrix"), 1, GL_FALSE, &ModelMatrix[0][0]);
+	NormalMatrix = transpose(inverse(MatriuVista * ModelMatrix));
+	// Pas NormalMatrix a shader
+	glUniformMatrix4fv(glGetUniformLocation(shaderId, "normalMatrix"), 1, GL_FALSE, &NormalMatrix[0][0]);
+	draw_TriEBO_Object(GLU_SPHERE);
+	glBindTexture(GL_TEXTURE_2D, 0);
+
+
+	//luna
+	SetTextureParameters(luna.textura, true, true, true, false);
+	glActiveTexture(GL_TEXTURE0); // Activació del bloc 1 de textura.
+
+	TransMatrix = glm::translate(MatriuTG, vec3(luna.tx, luna.ty, luna.tz));
+	ModelMatrix = glm::scale(TransMatrix, vec3(luna.sx, luna.sy, luna.sz));
+	// Pas ModelView Matrix a shade
+	glUniformMatrix4fv(glGetUniformLocation(shaderId, "modelMatrix"), 1, GL_FALSE, &ModelMatrix[0][0]);
+	NormalMatrix = transpose(inverse(MatriuVista * ModelMatrix));
+	// Pas NormalMatrix a shader
+	glUniformMatrix4fv(glGetUniformLocation(shaderId, "normalMatrix"), 1, GL_FALSE, &NormalMatrix[0][0]);
+	draw_TriEBO_Object(GLU_SPHERE);
+	glBindTexture(GL_TEXTURE_2D, 0);
+
+
+	//marte
+	SetTextureParameters(marte.textura, true, true, true, false);
+	glActiveTexture(GL_TEXTURE0); // Activació del bloc 1 de textura.
+
+	TransMatrix = glm::translate(MatriuTG, vec3(marte.tx, marte.ty, marte.tz));
+	ModelMatrix = glm::scale(TransMatrix, vec3(marte.sx, marte.sy, marte.sz));
+	// Pas ModelView Matrix a shade
+	glUniformMatrix4fv(glGetUniformLocation(shaderId, "modelMatrix"), 1, GL_FALSE, &ModelMatrix[0][0]);
+	NormalMatrix = transpose(inverse(MatriuVista * ModelMatrix));
+	// Pas NormalMatrix a shader
+	glUniformMatrix4fv(glGetUniformLocation(shaderId, "normalMatrix"), 1, GL_FALSE, &NormalMatrix[0][0]);
+	draw_TriEBO_Object(GLU_SPHERE);
+	glBindTexture(GL_TEXTURE_2D, 0);
+
+
+	//jupiter
+	SetTextureParameters(jupiter.textura, true, true, true, false);
+	glActiveTexture(GL_TEXTURE0); // Activació del bloc 1 de textura.
+
+	TransMatrix = glm::translate(MatriuTG, vec3(jupiter.tx, jupiter.ty, jupiter.tz));
+	ModelMatrix = glm::scale(TransMatrix, vec3(jupiter.sx, jupiter.sy, jupiter.sz));
+	// Pas ModelView Matrix a shade
+	glUniformMatrix4fv(glGetUniformLocation(shaderId, "modelMatrix"), 1, GL_FALSE, &ModelMatrix[0][0]);
+	NormalMatrix = transpose(inverse(MatriuVista * ModelMatrix));
+	// Pas NormalMatrix a shader
+	glUniformMatrix4fv(glGetUniformLocation(shaderId, "normalMatrix"), 1, GL_FALSE, &NormalMatrix[0][0]);
+	draw_TriEBO_Object(GLU_SPHERE);
+	glBindTexture(GL_TEXTURE_2D, 0);
+
+
+	//saturno
+	SetTextureParameters(saturno.textura, true, true, true, false);
+	glActiveTexture(GL_TEXTURE0); // Activació del bloc 1 de textura.
+
+	TransMatrix = glm::translate(MatriuTG, vec3(saturno.tx, saturno.ty, saturno.tz));
+	ModelMatrix = glm::scale(TransMatrix, vec3(saturno.sx, saturno.sy, saturno.sz));
+	// Pas ModelView Matrix a shade
+	glUniformMatrix4fv(glGetUniformLocation(shaderId, "modelMatrix"), 1, GL_FALSE, &ModelMatrix[0][0]);
+	NormalMatrix = transpose(inverse(MatriuVista * ModelMatrix));
+	// Pas NormalMatrix a shader
+	glUniformMatrix4fv(glGetUniformLocation(shaderId, "normalMatrix"), 1, GL_FALSE, &NormalMatrix[0][0]);
+	draw_TriEBO_Object(GLU_SPHERE);
+	glBindTexture(GL_TEXTURE_2D, 0);
+
+
+	//anilloSaturno, rotado  ->>> probar torus
+	SetTextureParameters(anilloSaturno.textura, true, true, true, false);
+	glActiveTexture(GL_TEXTURE0); // Activació del bloc 1 de textura.
+
+	TransMatrix = glm::translate(MatriuTG, vec3(anilloSaturno.tx, anilloSaturno.ty, anilloSaturno.tz));
+	TransMatrix = glm::scale(TransMatrix, vec3(anilloSaturno.sx, anilloSaturno.sy, anilloSaturno.sz));
+	ModelMatrix = glm::rotate(TransMatrix, radians(30.f), vec3(anilloSaturno.rx, anilloSaturno.ry, anilloSaturno.rz));
+	// Pas ModelView Matrix a shader
+	glUniformMatrix4fv(glGetUniformLocation(shaderId, "modelMatrix"), 1, GL_FALSE, &ModelMatrix[0][0]);
+	NormalMatrix = transpose(inverse(MatriuVista * ModelMatrix));
+	// Pas NormalMatrix a shader
+	glUniformMatrix4fv(glGetUniformLocation(shaderId, "normalMatrix"), 1, GL_FALSE, &NormalMatrix[0][0]);
+	draw_TriEBO_Object(GLU_DISK);
+	glBindTexture(GL_TEXTURE_2D, 0);
+
+
+	//urano
+	SetTextureParameters(urano.textura, true, true, true, false);
+	glActiveTexture(GL_TEXTURE0); // Activació del bloc 1 de textura.
+
+	TransMatrix = glm::translate(MatriuTG, vec3(urano.tx, urano.ty, urano.tz));
+	ModelMatrix = glm::scale(TransMatrix, vec3(urano.sx, urano.sy, urano.sz));
+	// Pas ModelView Matrix a shade
+	glUniformMatrix4fv(glGetUniformLocation(shaderId, "modelMatrix"), 1, GL_FALSE, &ModelMatrix[0][0]);
+	NormalMatrix = transpose(inverse(MatriuVista * ModelMatrix));
+	// Pas NormalMatrix a shader
+	glUniformMatrix4fv(glGetUniformLocation(shaderId, "normalMatrix"), 1, GL_FALSE, &NormalMatrix[0][0]);
+	draw_TriEBO_Object(GLU_SPHERE);
+	glBindTexture(GL_TEXTURE_2D, 0);
+
+
+	//neptuno
+	SetTextureParameters(neptuno.textura, true, true, true, false);
+	glActiveTexture(GL_TEXTURE0); // Activació del bloc 1 de textura.
+
+	TransMatrix = glm::translate(MatriuTG, vec3(neptuno.tx, neptuno.ty, neptuno.tz));
+	ModelMatrix = glm::scale(TransMatrix, vec3(neptuno.sx, neptuno.sy, neptuno.sz));
+	// Pas ModelView Matrix a shade
+	glUniformMatrix4fv(glGetUniformLocation(shaderId, "modelMatrix"), 1, GL_FALSE, &ModelMatrix[0][0]);
+	NormalMatrix = transpose(inverse(MatriuVista * ModelMatrix));
+	// Pas NormalMatrix a shader
+	glUniformMatrix4fv(glGetUniformLocation(shaderId, "normalMatrix"), 1, GL_FALSE, &NormalMatrix[0][0]);
+	draw_TriEBO_Object(GLU_SPHERE);
+	glBindTexture(GL_TEXTURE_2D, 0);
+
+	/*
+	//disco 2, mas grande
+	TransMatrix = glm::translate(MatriuTG, vec3(0.0f, 36.0f, 0.0f));
+	ModelMatrix = glm::scale(TransMatrix, vec3(2.0f, 2.0f, 0.0f));
+	// Pas ModelView Matrix a shader
+	glUniformMatrix4fv(glGetUniformLocation(shaderId, "modelMatrix"), 1, GL_FALSE, &ModelMatrix[0][0]);
+	NormalMatrix = transpose(inverse(MatriuVista * ModelMatrix));
+	// Pas NormalMatrix a shader
+	glUniformMatrix4fv(glGetUniformLocation(shaderId, "normalMatrix"), 1, GL_FALSE, &NormalMatrix[0][0]);
+	draw_TriEBO_Object(GLU_DISK);
+	*/
+}
 
 // Dibuixa Eixos Coordenades Món i Reixes, activant un shader propi.
 void dibuixa_Eixos(GLuint ax_programID, bool eix, GLuint axis_Id, CMask3D reixa, CPunt3D hreixa, 
@@ -80,7 +282,7 @@ void dibuixa_EscenaGL(GLuint sh_programID, bool eix, GLuint axis_Id, CMask3D rei
 			bool textur, GLint texturID[NUM_MAX_TEXTURES], bool textur_map, bool flagInvertY,
 			int nptsU, CPunt3D PC_u[MAX_PATCH_CORBA], GLfloat pasCS, bool sw_PC, bool dib_TFrenet,
 			GLuint vaoList_3DS, GLuint vaoList_OBJ,
-			glm::mat4 MatriuVista, glm::mat4 MatriuTG, SSolar SistemaSolar)
+			glm::mat4 MatriuVista, glm::mat4 MatriuTG, SSolar SS)
 {
 	float altfar = 0;
 	GLint npunts = 0, nvertexs = 0;
@@ -125,12 +327,14 @@ void dibuixa_EscenaGL(GLuint sh_programID, bool eix, GLuint axis_Id, CMask3D rei
 	switch (objecte)
 	{
 
-	case SSD:
+// Arc
+	case SISTEMASOLAR:
+		// Definició propietats de reflexió (emissió, ambient, difusa, especular) del material pel color de l'objecte.
 		SeleccionaColorMaterial(sh_programID, col_object, sw_mat);
 
-		SSDibuixa(sh_programID, MatriuVista, MatriuTG, sw_mat, SistemaSolar);
+		sistemaSolar(sh_programID, MatriuVista, MatriuTG, sw_mat, SS);
 		break;
-// Arc
+
 	case ARC:
 		// Definició propietats de reflexió (emissió, ambient, difusa, especular) del material pel color de l'objecte.
 		SeleccionaColorMaterial(sh_programID, col_object, sw_mat);
@@ -662,45 +866,15 @@ CVAO loadSea_VAO(CColor colorM)
 	return seaVAO;
 }
 
-void SSDibuixa(GLint shaderId, glm::mat4 MatriuVista, glm::mat4 MatriuTG, bool sw_mat[4], SSolar SS)
-{
-	Planeta sol = SS.Sol;
-	Planeta terra = SS.Terra;
-
-
-	glm::mat4 TransMatrix(1.0), NormalMatrix(1.0), ModelMatrix(1.0);
-	CColor col_object;
-
-	col_object.r = 1.0;	col_object.g = 1.0;		col_object.b = 1.0;	 col_object.a = 1.0;
-	SeleccionaColorMaterial(shaderId, col_object, sw_mat);
-	
-	//SOl
-	TransMatrix = glm::translate(MatriuTG, vec3(sol.tx, sol.ty, sol.tz));
-	if(sol.rota)
-		TransMatrix = glm::rotate(TransMatrix, radians(sol.rad), vec3(sol.rx, sol.ry, sol.rz));
-	ModelMatrix = glm::scale(TransMatrix, vec3(sol.sz, sol.sy, sol.sz));
-	// Pas ModelView Matrix a shade
-	glUniformMatrix4fv(glGetUniformLocation(shaderId, "modelMatrix"), 1, GL_FALSE, &ModelMatrix[0][0]);
-	NormalMatrix = transpose(inverse(MatriuVista * ModelMatrix));
-	// Pas NormalMatrix a shader
-	glUniformMatrix4fv(glGetUniformLocation(shaderId, "normalMatrix"), 1, GL_FALSE, &NormalMatrix[0][0]);
-	draw_TriEBO_Object(GLUT_SPHERE);
-	
-	//Terra
-	TransMatrix = glm::translate(MatriuTG, vec3(terra.tx, terra.ty, terra.tz));
-	//	TransMatrix = glm::rotate(TransMatrix, radians(terra.rad), vec3(terra.rx, terra.ry, terra.rz));
-	ModelMatrix = glm::scale(TransMatrix, vec3(terra.sx, terra.sy, terra.sz));
-	// Pas ModelView Matrix a shade
-	glUniformMatrix4fv(glGetUniformLocation(shaderId, "modelMatrix"), 1, GL_FALSE, &ModelMatrix[0][0]);
-	NormalMatrix = transpose(inverse(MatriuVista * ModelMatrix));
-	// Pas NormalMatrix a shader
-	glUniformMatrix4fv(glGetUniformLocation(shaderId, "normalMatrix"), 1, GL_FALSE, &NormalMatrix[0][0]);
-	draw_TriEBO_Object(GLUT_SPHERE);
-}
 
 // OBJECTE TIE: FETS PER ALUMNES -----------------------------------------------------------------
 
 // Objecte TIE
+
+
+
+
+
 void tie(GLint shaderId, glm::mat4 MatriuVista, glm::mat4 MatriuTG, bool sw_mat[4])
 {	Motor(shaderId,MatriuVista,MatriuTG, sw_mat);
 	Alas(shaderId, MatriuVista, MatriuTG, sw_mat);

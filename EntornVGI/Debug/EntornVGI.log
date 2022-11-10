@@ -1,2 +1,3 @@
-﻿  Main.cpp
-C:\Users\oriol\OneDrive\Escritorio\Enginyeria Inforàtica\VGI\Entorn VGI-MFC-VS2022 - GL3.3+\EntornVGI\Main.cpp(1,10): fatal  error C1853: El archivo de encabezado precompilado "Debug\EntornVGI.pch" es de una versión distinta del compilador, o bien el encabezado precompilado es de C++ y lo está utilizando desde C (o viceversa)
+﻿  EntornVGIView.cpp
+  escena.cpp
+D:\Tercero Carrera\VGI\Entorn VGI-MFC-VS2022 - GL3.3+\EntornVGI\escena.cpp(133,3): error C3861: 'sistemaSolar': no se encontró el identificador

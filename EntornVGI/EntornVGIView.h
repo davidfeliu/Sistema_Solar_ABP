@@ -6,6 +6,7 @@
 /////////////////////////////////////////////////////////////////////////////
 
 #pragma once
+
 #include "MainFrm.h"
 
 // Entorn VGI: Constants de l'aplicació entorn VGI
@@ -78,9 +79,8 @@ public:
 	char projeccio;	// Menú Projecció: Tipus de projeccio
 	glm::mat4 ProjectionMatrix;// Matriu de Projecció a passar al shader
 	char objecte;	// Menú Objecte: Tipus d'Objecte
-	
 	SSolar SS;
-	float incX;
+
 
 // Entorn VGI: Variables de control Skybox Cube
 	bool SkyBoxCube;			// Booleana que controla si es visualitza Skybox [TRUE] o no [FALSE].
@@ -443,12 +443,16 @@ public:
 	afx_msg void OnArxiuObrirFitxerFontLlum();
 	afx_msg void OnObjecteCap();
 	afx_msg void OnUpdateObjecteCap(CCmdUI* pCmdUI);
-	afx_msg void initSS();
+	afx_msg void OnObjecteSol();
+	afx_msg void OnUpdateObjecteSol(CCmdUI* pCmdUI);
 
+	afx_msg void initSS();
+	afx_msg void OnObjecteSistemasolar();
+	afx_msg void OnUpdateObjecteSistemasolar(CCmdUI* pCmdUI);
+	afx_msg void OnSistemasolarRota();
+	afx_msg void OnUpdateSistemasolarRota(CCmdUI* pCmdUI);
 	afx_msg void OnSistemasolarDibuixa();
 	afx_msg void OnUpdateSistemasolarDibuixa(CCmdUI* pCmdUI);
-	afx_msg void OnSistemasolarR();
-	afx_msg void OnUpdateSistemasolarR(CCmdUI* pCmdUI);
 };
 
 #ifndef _DEBUG  // Versión de depuración en EntornVGIView.cpp
