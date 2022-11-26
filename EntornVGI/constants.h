@@ -4,10 +4,9 @@
 // constants.h : Definició de constants compartides
 //				 CENtornVGIView.cpp, visualitzacio.cpp i escena.cpp
 
-
 #ifndef CONST_H
 #define CONST_H
-
+#include <vector>
 //--------------- VGI: Tipus de Càmera
 #define CAP ' '
 #define CAM_ESFERICA 'E'
@@ -229,13 +228,12 @@ struct Planeta
 	GLuint textura;
 	bool rota;
 
+	std::vector<double> pts_orbita;
 	//angulo
 	float rad;
 	//radio orbita
 	float radi;
 	float vel;
-
-
 };
 
 struct SSolar
@@ -251,11 +249,12 @@ struct SSolar
 	Planeta AnilloSaturno;
 	Planeta Urano;
 	Planeta Neptuno;
-
+	Planeta Orbita;
+	Planeta Asteroides;
+	Planeta Kuiper;
 	UINT selecCamaraPlaneta = VK_NUMPAD8;
 
 	bool rotacion;
-
 
 };
 #endif

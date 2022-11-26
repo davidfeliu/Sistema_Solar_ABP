@@ -1,6 +1,7 @@
-﻿  soil.lib(SOIL.obj) : se encontró .netmodule MSIL o un módulo compilado con /GL; reiniciando la vinculación con /LTCG; agregue /LTCG a la línea de comandos de vínculo para mejorar el rendimiento del vinculador
-LINK : warning LNK4075: se omite '/INCREMENTAL' debido a la especificación '/LTCG'
-     Creando biblioteca C:\Users\34644\OneDrive\Escritorio\Uni\3r-carrera\VGI\vgi todo\Entorn VGI-MFC-VS2022 - GL3.3+\x64\Debug\EntornVGI.lib y objeto C:\Users\34644\OneDrive\Escritorio\Uni\3r-carrera\VGI\vgi todo\Entorn VGI-MFC-VS2022 - GL3.3+\x64\Debug\EntornVGI.exp
-  Generando código
-  Generación de código finalizada
-  EntornVGI.vcxproj -> C:\Users\34644\OneDrive\Escritorio\Uni\3r-carrera\VGI\vgi todo\Entorn VGI-MFC-VS2022 - GL3.3+\x64\Debug\EntornVGI.exe
+﻿  EntornVGIView.cpp
+  soil.lib(SOIL.obj) : MSIL .netmodule or module compiled with /GL found; restarting link with /LTCG; add /LTCG to the link command line to improve linker performance
+LINK : warning LNK4075: ignoring '/INCREMENTAL' due to '/LTCG' specification
+     Creating library C:\Users\oriol\OneDrive\Escritorio\Enginyeria Inforàtica\VGI\Entorn VGI-MFC-VS2022 - GL3.3+\x64\Debug\EntornVGI.lib and object C:\Users\oriol\OneDrive\Escritorio\Enginyeria Inforàtica\VGI\Entorn VGI-MFC-VS2022 - GL3.3+\x64\Debug\EntornVGI.exp
+  Generating code
+  Finished generating code
+  EntornVGI.vcxproj -> C:\Users\oriol\OneDrive\Escritorio\Enginyeria Inforàtica\VGI\Entorn VGI-MFC-VS2022 - GL3.3+\x64\Debug\EntornVGI.exe

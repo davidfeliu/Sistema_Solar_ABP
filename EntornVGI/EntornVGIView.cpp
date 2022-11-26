@@ -206,10 +206,6 @@ BEGIN_MESSAGE_MAP(CEntornVGIView, CView)
 		ON_COMMAND(ID_ARXIU_OBRIR_FITXER_FONT_LLUM, &CEntornVGIView::OnArxiuObrirFitxerFontLlum)
 		ON_COMMAND(ID_OBJECTE_CAP, &CEntornVGIView::OnObjecteCap)
 		ON_UPDATE_COMMAND_UI(ID_OBJECTE_CAP, &CEntornVGIView::OnUpdateObjecteCap)
-		ON_COMMAND(ID_OBJECTE_SOL, &CEntornVGIView::OnObjecteSol)
-		ON_UPDATE_COMMAND_UI(ID_OBJECTE_SOL, &CEntornVGIView::OnUpdateObjecteSol)
-		//ON_COMMAND(ID_OBJECTE_SISTEMASOLAR, &CEntornVGIView::OnObjecteSistemasolar)
-		//ON_UPDATE_COMMAND_UI(ID_OBJECTE_SISTEMASOLAR, &CEntornVGIView::OnUpdateObjecteSistemasolar)
 		ON_COMMAND(ID_SISTEMASOLAR_ROTA, &CEntornVGIView::OnSistemasolarRota)
 		ON_UPDATE_COMMAND_UI(ID_SISTEMASOLAR_ROTA, &CEntornVGIView::OnUpdateSistemasolarRota)
 		ON_COMMAND(ID_SISTEMASOLAR_DIBUIXA, &CEntornVGIView::OnSistemasolarDibuixa)
@@ -287,7 +283,7 @@ CEntornVGIView::CEntornVGIView()
 
 // Entorn VGI: Variables de control del menú Llums
 // Entorn VGI: Inicialització variables Llums
-	llum_ambient = true;
+	llum_ambient = false;
 	for (i = 1; i<NUM_MAX_LLUMS; i++) llumGL[i].encesa = false;
 	for (i = 0; i<NUM_MAX_LLUMS; i++) {
 		llumGL[i].encesa = false;
@@ -296,7 +292,7 @@ CEntornVGIView::CEntornVGIView()
 	}
 
 // LLum 0: Átenuació constant (c=1), sobre l'eix Z, no restringida.
-	llumGL[0].encesa = true;
+	llumGL[0].encesa = false;
 	llumGL[0].difusa[0] = 1.0f;			llumGL[0].difusa[1] = 1.0f;			llumGL[0].difusa[2] = 1.0f;		llumGL[0].difusa[3] = 1.0f;
 	llumGL[0].especular[0] = 1.0f;		llumGL[0].especular[1] = 1.0f;		llumGL[0].especular[2] = 1.0f;	llumGL[0].especular[3] = 1.0f;
 
@@ -996,9 +992,14 @@ void CEntornVGIView::OnPaint()
 
 // Crida a la funció Fons Blanc
 		FonsB();
-
+		projeccio = PERSPECT;
+		OnSistemasolarDibuixa();
+		OnIluminacioGouraud();
+		OnIluminacioTextures();
+		OnVistaSkyBox();
 // Intercanvia l'escena al front de la pantalla
 		SwapBuffers(m_pDC->GetSafeHdc());
+
 		break;
 }
 
@@ -1858,9 +1859,10 @@ void CEntornVGIView::Teclat_Navega(UINT nChar, UINT nRepCnt)
 		SS.selecCamaraPlaneta = VK_NUMPAD7;
 		break;
 
+		//sol
 	case VK_NUMPAD8:
 		opvN.x = SS.Sol.tx;
-		opvN.y = SS.Sol.ty + SS.Sol.sx + 3;
+		opvN.y = SS.Sol.ty + SS.Sol.sx + 12;
 		n[0] = SS.Sol.tx;
 		n[1] = SS.Sol.ty;
 
@@ -1868,7 +1870,7 @@ void CEntornVGIView::Teclat_Navega(UINT nChar, UINT nRepCnt)
 		break;
 
 	default:
-		break;  
+		break;
 	}
 	
 	/*switch (nChar)
@@ -2866,7 +2868,7 @@ void CEntornVGIView::OnTimer(UINT_PTR nIDEvent)
 		float rad = SS.Mercurio.rad;
 		rad = rad + SS.Mercurio.vel;
 		while (rad > 360) rad -= 360;
-		SS.Mercurio.tx = float(sin(rad) * SS.Mercurio.radi);
+		SS.Mercurio.tx = float(sin(rad) * SS.Mercurio.radi* 0.97855);
 		SS.Mercurio.ty = float(cos(rad) * SS.Mercurio.radi);
 		SS.Mercurio.rad = rad;
 
@@ -2874,7 +2876,7 @@ void CEntornVGIView::OnTimer(UINT_PTR nIDEvent)
 		rad = SS.Venus.rad;
 		rad = rad + SS.Venus.vel;
 		while (rad > 360) rad -= 360;
-		SS.Venus.tx = float(sin(rad) * SS.Venus.radi);
+		SS.Venus.tx = float(sin(rad) * SS.Venus.radi*0.99997);
 		SS.Venus.ty = float(cos(rad) * SS.Venus.radi);
 		SS.Venus.rad = rad;
 
@@ -2882,7 +2884,7 @@ void CEntornVGIView::OnTimer(UINT_PTR nIDEvent)
 		rad = SS.Tierra.rad;
 		rad = rad + SS.Tierra.vel;
 		while (rad > 360) rad -= 360;
-		SS.Tierra.tx = float(sin(rad) * SS.Tierra.radi);
+		SS.Tierra.tx = float(sin(rad) * SS.Tierra.radi* 0.99986);
 		SS.Tierra.ty = float(cos(rad) * SS.Tierra.radi);
 		SS.Tierra.rad = rad;
 
@@ -2898,7 +2900,7 @@ void CEntornVGIView::OnTimer(UINT_PTR nIDEvent)
 		rad = SS.Marte.rad;
 		rad = rad + SS.Marte.vel;
 		while (rad > 360) rad -= 360;
-		SS.Marte.tx = float(sin(rad) * SS.Marte.radi);
+		SS.Marte.tx = float(sin(rad) * SS.Marte.radi* 0.99566);
 		SS.Marte.ty = float(cos(rad) * SS.Marte.radi);
 		SS.Marte.rad = rad;
 
@@ -2906,7 +2908,7 @@ void CEntornVGIView::OnTimer(UINT_PTR nIDEvent)
 		rad = SS.Jupiter.rad;
 		rad = rad + SS.Jupiter.vel;
 		while (rad > 360) rad -= 360;
-		SS.Jupiter.tx = float(sin(rad) * SS.Jupiter.radi);
+		SS.Jupiter.tx = float(sin(rad) * SS.Jupiter.radi* 0.99880);
 		SS.Jupiter.ty = float(cos(rad) * SS.Jupiter.radi);
 		SS.Jupiter.rad = rad;
 
@@ -2914,7 +2916,7 @@ void CEntornVGIView::OnTimer(UINT_PTR nIDEvent)
 		rad = SS.Saturno.rad;
 		rad = rad + SS.Saturno.vel;
 		while (rad > 360) rad -= 360;
-		SS.Saturno.tx = float(sin(rad) * SS.Saturno.radi);
+		SS.Saturno.tx = float(sin(rad) * SS.Saturno.radi* 0.99840);
 		SS.Saturno.ty = float(cos(rad) * SS.Saturno.radi);
 		SS.Saturno.rad = rad;
 
@@ -2930,7 +2932,7 @@ void CEntornVGIView::OnTimer(UINT_PTR nIDEvent)
 		rad = SS.Urano.rad;
 		rad = rad + SS.Urano.vel;
 		while (rad > 360) rad -= 360;
-		SS.Urano.tx = float(sin(rad) * SS.Urano.radi);
+		SS.Urano.tx = float(sin(rad) * SS.Urano.radi* 0.99892);
 		SS.Urano.ty = float(cos(rad) * SS.Urano.radi);
 		SS.Urano.rad = rad;
 
@@ -2938,7 +2940,7 @@ void CEntornVGIView::OnTimer(UINT_PTR nIDEvent)
 		rad = SS.Neptuno.rad;
 		rad = rad + SS.Neptuno.vel;
 		while (rad > 360) rad -= 360;
-		SS.Neptuno.tx = float(sin(rad) * SS.Neptuno.radi);
+		SS.Neptuno.tx = float(sin(rad) * SS.Neptuno.radi* 0.99995);
 		SS.Neptuno.ty = float(cos(rad) * SS.Neptuno.radi);
 		SS.Neptuno.rad = rad;
 
@@ -2947,120 +2949,103 @@ void CEntornVGIView::OnTimer(UINT_PTR nIDEvent)
 		{
 			//MERCURIO
 		case VK_NUMPAD0:
-			opvN.x = SS.Mercurio.tx;
-			opvN.y = SS.Mercurio.ty + SS.Mercurio.sx + 3;
-			n[0] = SS.Mercurio.tx;
-			n[1] = SS.Mercurio.ty;
+			rad = SS.Mercurio.rad;
+			rad = rad + SS.Mercurio.vel;
+			while (rad > 360) rad -= 360;
+			opvN.x = float(sin(rad) * (SS.Mercurio.radi + 3));
+			opvN.y = float(cos(rad) * (SS.Mercurio.radi + 3));
+
+			n[0] = SS.Sol.tx;
+			n[1] = SS.Sol.ty;
 			break;
 
 			//VENUS
 		case VK_NUMPAD1:
-			opvN.x = SS.Venus.tx;
-			opvN.y = SS.Venus.ty + SS.Venus.sx + 3;
-			n[0] = SS.Venus.tx;
-			n[1] = SS.Venus.ty;
+			rad = SS.Venus.rad;
+			rad = rad + SS.Venus.vel;
+			while (rad > 360) rad -= 360;
+			opvN.x = float(sin(rad) * (SS.Venus.radi + 3));
+			opvN.y = float(cos(rad) * (SS.Venus.radi + 3));
+
+			n[0] = SS.Sol.tx;
+			n[1] = SS.Sol.ty;
 			break;
 
 			//TIERRA
 		case VK_NUMPAD2:
-			opvN.x = SS.Tierra.tx;
-			opvN.y = SS.Tierra.ty + SS.Tierra.sx + 3;
-			n[0] = SS.Tierra.tx;
-			n[1] = SS.Tierra.ty;
+			rad = SS.Tierra.rad;
+			rad = rad + SS.Tierra.vel;
+			while (rad > 360) rad -= 360;
+			opvN.x = float(sin(rad) * (SS.Tierra.radi + 3));
+			opvN.y = float(cos(rad) * (SS.Tierra.radi + 3));
+
+			n[0] = SS.Sol.tx;
+			n[1] = SS.Sol.ty;
 			break;
 
 			//MARTE
 		case VK_NUMPAD3:
-			opvN.x = SS.Marte.tx;
-			opvN.y = SS.Marte.ty + SS.Marte.sx + 3;
-			n[0] = SS.Marte.tx;
-			n[1] = SS.Marte.ty;
+			rad = SS.Marte.rad;
+			rad = rad + SS.Marte.vel;
+			while (rad > 360) rad -= 360;
+			opvN.x = float(sin(rad) * (SS.Marte.radi + 3));
+			opvN.y = float(cos(rad) * (SS.Marte.radi + 3));
+
+			n[0] = SS.Sol.tx;
+			n[1] = SS.Sol.ty;
 			break;
 
 			//JUPITER
 		case VK_NUMPAD4:
-			opvN.x = SS.Jupiter.tx;
-			opvN.y = SS.Jupiter.ty + SS.Jupiter.sx + 5;
-			n[0] = SS.Jupiter.tx;
-			n[1] = SS.Jupiter.ty;
+			rad = SS.Jupiter.rad;
+			rad = rad + SS.Jupiter.vel;
+			while (rad > 360) rad -= 360;
+			opvN.x = float(sin(rad) * (SS.Jupiter.radi + 11));
+			opvN.y = float(cos(rad) * (SS.Jupiter.radi + 11));
+
+			n[0] = SS.Sol.tx;
+			n[1] = SS.Sol.ty;
 			break;
 
 			//SATURNO
 		case VK_NUMPAD5:
-			opvN.x = SS.Saturno.tx;
-			opvN.y = SS.Saturno.ty + SS.Saturno.sx + 5;
-			n[0] = SS.Saturno.tx;
-			n[1] = SS.Saturno.ty;
+			rad = SS.Saturno.rad;
+			rad = rad + SS.Saturno.vel;
+			while (rad > 360) rad -= 360;
+			opvN.x = float(sin(rad) * (SS.Saturno.radi + 6));
+			opvN.y = float(cos(rad) * (SS.Saturno.radi + 6));
+
+			n[0] = SS.Sol.tx;
+			n[1] = SS.Sol.ty;
 			break;
 
 			//URANO
 		case VK_NUMPAD6:
-			opvN.x = SS.Urano.tx;
-			opvN.y = SS.Urano.ty + SS.Urano.sx + 3;
-			n[0] = SS.Urano.tx;
-			n[1] = SS.Urano.ty;
+			rad = SS.Urano.rad;
+			rad = rad + SS.Urano.vel;
+			while (rad > 360) rad -= 360;
+			opvN.x = float(sin(rad) * (SS.Urano.radi + 6));
+			opvN.y = float(cos(rad) * (SS.Urano.radi + 6));
+
+			n[0] = SS.Sol.tx;
+			n[1] = SS.Sol.ty;
 			break;
 
 			//NEPTUNO
 		case VK_NUMPAD7:
-			opvN.x = SS.Neptuno.tx;
-			opvN.y = SS.Neptuno.ty + SS.Neptuno.sx + 3;
-			n[0] = SS.Neptuno.tx;
-			n[1] = SS.Neptuno.ty;
+			rad = SS.Neptuno.rad;
+			rad = rad + SS.Neptuno.vel;
+			while (rad > 360) rad -= 360;
+			opvN.x = float(sin(rad) * (SS.Neptuno.radi + 6));
+			opvN.y = float(cos(rad) * (SS.Neptuno.radi + 6));
+
+			n[0] = SS.Sol.tx;
+			n[1] = SS.Sol.ty;
 			break;
 
 		default:
 			break;
 		}
-
-
-		/*MERCURIO
-		opvN.x = SS.Mercurio.tx;
-		opvN.y = SS.Mercurio.ty + SS.Mercurio.sx + 3;
-		n[0] = SS.Mercurio.tx;
-		n[1] = SS.Mercurio.ty;
-
-		//VENUS
-		opvN.x = SS.Venus.tx;
-		opvN.y = SS.Venus.ty + SS.Venus.sx + 3;
-		n[0] = SS.Venus.tx;
-		n[1] = SS.Venus.ty;
-
-		//TIERRA
-		opvN.x = SS.Tierra.tx;
-		opvN.y = SS.Tierra.ty + SS.Tierra.sx + 3;
-		n[0] = SS.Tierra.tx;
-		n[1] = SS.Tierra.ty;
-
-		//MARTE
-		opvN.x = SS.Marte.tx;
-		opvN.y = SS.Marte.ty + SS.Marte.sx + 3;
-		n[0] = SS.Marte.tx;
-		n[1] = SS.Marte.ty;
-
-		//JUPITER
-		opvN.x = SS.Jupiter.tx;
-		opvN.y = SS.Jupiter.ty + SS.Jupiter.sx + 3;
-		n[0] = SS.Jupiter.tx;
-		n[1] = SS.Jupiter.ty;
-
-		//SATURNO
-		opvN.x = SS.Saturno.tx;
-		opvN.y = SS.Saturno.ty + SS.Saturno.sx + 3;
-		n[0] = SS.Saturno.tx;
-		n[1] = SS.Saturno.ty;
-		
-		//URANO
-		opvN.x = SS.Urano.tx;
-		opvN.y = SS.Urano.ty + SS.Urano.sx + 3;
-		n[0] = SS.Urano.tx;
-		n[1] = SS.Urano.ty;
-
-		//NEPTUNO
-		opvN.x = SS.Neptuno.tx;
-		opvN.y = SS.Neptuno.ty + SS.Neptuno.sx + 3;
-		n[0] = SS.Neptuno.tx;
-		n[1] = SS.Neptuno.ty;*/
 
 		InvalidateRect(NULL, false);
 	}
@@ -3605,12 +3590,12 @@ void CEntornVGIView::OnVistaSkyBox()
 	{	// load Skybox textures
 		// -------------
 		std::vector<std::string> faces =
-		{ ".\\textures\\skybox\\right.jpg",
-			".\\textures\\skybox\\left.jpg",
-			".\\textures\\skybox\\top.jpg",
-			".\\textures\\skybox\\bottom.jpg",
-			".\\textures\\skybox\\front.jpg",
-			".\\textures\\skybox\\back.jpg"
+		{ ".\\textures\\skybox\\via-lactea.jpg",
+			".\\textures\\skybox\\via-lactea.jpg",
+			".\\textures\\skybox\\stars.jpg",
+			".\\textures\\skybox\\stars.jpg",
+			".\\textures\\skybox\\via-lactea.jpg",
+			".\\textures\\skybox\\via-lactea.jpg"
 		};
 		cubemapTexture = loadCubemap(faces);
 	}
@@ -5432,21 +5417,34 @@ std::string CEntornVGIView::CString2String(const CString& cString)
 }
 
 
-
-void CEntornVGIView::OnObjecteSol()
-{
-
-	// TODO: Agregue aquí su código de controlador de comandos
-}
-
-
-void CEntornVGIView::OnUpdateObjecteSol(CCmdUI* pCmdUI)
-{
-	// TODO: Agregue aquí su código de controlador de IU para actualización de comandos
-}
-
 void CEntornVGIView::initSS()
 {
+	LLUM sol;
+	sol.encesa = true;
+	CEsfe3D pos;
+	pos.R = 0.0;
+	pos.alfa = 0.0;
+	pos.beta = 0.0;
+	sol.posicio = pos;
+	sol.difusa[0] = 1.0;
+	sol.difusa[1] = 1.0;
+	sol.difusa[2] = 1.0;
+	sol.difusa[3] = 1.0;
+	sol.especular[0] = 1.0;
+	sol.especular[1] = 1.0;
+	sol.especular[2] = 1.0;
+	sol.especular[3] = 1.0;
+	sol.atenuacio.a = 0.0;
+	sol.atenuacio.b = 0.0;
+	sol.atenuacio.c = 1.0;
+	sol.restringida = false;
+	sol.spotdirection[0] = 0.0;
+	sol.spotdirection[1] = 0.0;
+	sol.spotdirection[2] = -1.0;
+	sol.spotcoscutoff = 0.906307936;
+	sol.spotexponent = 1.0;
+	llumGL[5] = sol;
+
 	// Sol
 	SS.Sol.textura = loadIMA_SOIL(".\\textures\\texturas planetas\\2k_sun.jpg");
 
@@ -5489,7 +5487,6 @@ void CEntornVGIView::initSS()
 	SS.Mercurio.radi = SS.Mercurio.ty;
 
 	SS.Mercurio.vel = 0.02 / 0.241;
-
 
 	// Venus
 	SS.Venus.textura = loadIMA_SOIL(".\\textures\\texturas planetas\\2k_venus_atmosphere.jpg");
@@ -5629,7 +5626,7 @@ void CEntornVGIView::initSS()
 
 
 	// AnilloSaturno
-	SS.AnilloSaturno.textura = loadIMA_SOIL(".\\textures\\texturas planetas\\2k_saturn_ring_alpha.jpg");
+	SS.AnilloSaturno.textura = loadIMA_SOIL(".\\textures\\texturas planetas\\orbita.jpg");
 
 	SS.AnilloSaturno.sx = 1.75;
 	SS.AnilloSaturno.sy = 1.75;
@@ -5695,6 +5692,54 @@ void CEntornVGIView::initSS()
 	SS.Neptuno.radi = SS.Neptuno.ty;
 
 	SS.Neptuno.vel = SS.Tierra.vel / 29.46;
+
+	// Orbitas
+	SS.Orbita.textura = loadIMA_SOIL(".\\textures\\texturas planetas\\orbitas.jpg");
+
+	// Asteroides
+	SS.Asteroides.textura = loadIMA_SOIL(".\\textures\\texturas planetas\\meteorits.jpg");
+
+	SS.Asteroides.sx = 0.1;
+	SS.Asteroides.sy = 0.1;
+	SS.Asteroides.sz = 0.1;
+
+	SS.Asteroides.tx = 0.0;
+	SS.Asteroides.ty = SS.Marte.ty + SS.Marte.sy * 1.5 + 5;
+	SS.Asteroides.tz = 0.0;
+
+
+	SS.Asteroides.rx = 0.0;
+	SS.Asteroides.ry = 0.0;
+	SS.Asteroides.rz = 0.0;
+
+	SS.Asteroides.rad = 0.0;
+	SS.Asteroides.rota = false;
+	SS.Asteroides.radi = SS.Asteroides.ty;
+
+	SS.Asteroides.vel = SS.Tierra.vel / 11.86;
+
+	// Cinturon de Kuiper
+	SS.Kuiper.textura = loadIMA_SOIL(".\\textures\\texturas planetas\\meteorits.jpg");
+
+	SS.Kuiper.sx = 0.2;
+	SS.Kuiper.sy = 0.2;
+	SS.Kuiper.sz = 0.2;
+
+	SS.Kuiper.tx = 0.0;
+	SS.Kuiper.ty = SS.Neptuno.ty + SS.Neptuno.sy * 1.5 + 10;
+	SS.Kuiper.tz = 0.0;
+
+
+	SS.Kuiper.rx = 0.0;
+	SS.Kuiper.ry = 0.0;
+	SS.Kuiper.rz = 0.0;
+
+	SS.Kuiper.rad = 0.0;
+	SS.Kuiper.rota = false;
+	SS.Kuiper.radi = SS.Kuiper.ty;
+
+	SS.Kuiper.vel = SS.Tierra.vel / 11.86;
+
 }
 
 void CEntornVGIView::OnSistemasolarRota()
@@ -5718,6 +5763,7 @@ void CEntornVGIView::OnSistemasolarDibuixa()
 {
 	// TODO: Agregue aquí su código de controlador de comandos
 	objecte = SISTEMASOLAR;
+	std::vector <double> colors = { 1.0, 1.0, 1.0, 1.0 };
 
 	// Entorn VGI: Activació el contexte OpenGL
 	wglMakeCurrent(m_pDC->GetSafeHdc(), m_hRC);
@@ -5734,8 +5780,13 @@ void CEntornVGIView::OnSistemasolarDibuixa()
 	Set_VAOList(GLU_DISK, loadgluDisk_EBO(2, 3, 20, 5));	// Càrrega disc com a VAO
 
 	Set_VAOList(GLU_SPHERE, loadgluSphere_EBO(1.5, 30, 30));
+	Set_VAOList(GLUT_LINES, loadgluDisk_EBO(0.997, 1.0, 10000, 100));
+	Set_VAOList(GLUT_DODECAHEDRON, loadglutSolidDodecahedron_EBO());
 
-	// Entorn VGI: Activació el contexte OpenGL. Permet la coexistencia d'altres contextes de generació
+	wglMakeCurrent(m_pDC->GetSafeHdc(), m_hRC);
+	// Pas màscara llums
+	glUniform1i(glGetUniformLocation(shader_programID, "sw_lights[5]"), llumGL[5].encesa);
+	// Entorn VGI: Desactivació del contexte OpenGL. Permet la coexistencia d'altres contextes de generació
 	wglMakeCurrent(m_pDC->GetSafeHdc(), NULL);
 
 	// Crida a OnPaint() per redibuixar l'escena
